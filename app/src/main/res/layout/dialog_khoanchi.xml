@@ -16,7 +16,6 @@
         android:textSize="16sp"
         android:gravity="center"
         android:background="@drawable/bg_yellow_corner_16_topleft_topright">
-
     </TextView>
 
     <LinearLayout
@@ -25,16 +24,18 @@
         android:padding="16dp"
         android:layout_height="wrap_content">
 
-
-        <EditText
-            android:id="@+id/ed_idchi"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_while_spinner"
+            >
 
-            android:enabled="false"
-            android:hint="ID khoản chi (Tự động điền)"
-            android:padding="12dp"></EditText>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ed_idchi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="true"
+                android:hint="Mã khoản chi (auto)" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Spinner
             android:id="@+id/spinerkhoanchi"
@@ -44,35 +45,48 @@
             android:visibility="visible">
         </Spinner>
 
-        <EditText
-            android:id="@+id/ed_tenkhoanchi"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="12dp"
-            android:background="@drawable/bg_while_corner_gray_10"
-            android:hint="Tên khoản chi"
-            ></EditText>
+            >
 
-        <EditText
-            android:id="@+id/ed_sotienchi"
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="12dp"
-            android:background="@drawable/bg_while_corner_gray_10"
-            android:hint="Số tiền"
-            ></EditText>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ed_tenkhoanchi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Tên khoản chi" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/ghichuchi"
+
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="12dp"
-            android:background="@drawable/bg_while_corner_gray_10"
-            android:hint="Ghi chú"
-            ></EditText>
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ed_sotienchi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Số tiền" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ghichuchi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Ghi chú" />
+        </com.google.android.material.textfield.TextInputLayout>
 
 
         <LinearLayout

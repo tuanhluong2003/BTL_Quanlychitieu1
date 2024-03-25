@@ -43,11 +43,9 @@ public abstract class App_DTB_Thu extends RoomDatabase {
     }
     public static class  PopulateData extends AsyncTask<Void, Void,Void> {
         private LoaiThuDao loaiThuDao;
-        private ThuDao thuDao;
 
         public PopulateData(App_DTB_Thu db) {
             loaiThuDao = db.loaiThuDao();
-            thuDao= db.thuDao();
         }
 
         @Override

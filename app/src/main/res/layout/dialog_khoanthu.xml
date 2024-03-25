@@ -25,16 +25,18 @@
         android:padding="16dp"
         android:layout_height="wrap_content">
 
-
-        <EditText
-            android:id="@+id/ed_idthu"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_while_spinner"
+            >
 
-            android:enabled="false"
-            android:hint="ID khoản thu (Tự động điền)"
-            android:padding="12dp"></EditText>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ed_idthu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Mã khoản thu (auto)"
+                android:visibility="invisible" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Spinner
             android:id="@+id/spinerkhoanthu"
@@ -44,35 +46,48 @@
             android:visibility="visible">
         </Spinner>
 
-        <EditText
-            android:id="@+id/ed_tenkhoanthu"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="12dp"
-            android:background="@drawable/bg_while_corner_gray_10"
-            android:hint="Tên khoản thu"
-            ></EditText>
+            >
 
-        <EditText
-            android:id="@+id/ed_sotienthu"
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="12dp"
-            android:background="@drawable/bg_while_corner_gray_10"
-            android:hint="Số tiền"
-            ></EditText>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ed_tenkhoanthu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Tên khoản thu" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/ghichuthu"
+
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="12dp"
-            android:background="@drawable/bg_while_corner_gray_10"
-            android:hint="Ghi chú"
-            ></EditText>
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ed_sotienthu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Số tiền" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ghichuthu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Ghi chú" />
+        </com.google.android.material.textfield.TextInputLayout>
 
 
         <LinearLayout

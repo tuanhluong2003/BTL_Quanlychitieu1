@@ -50,11 +50,9 @@ public abstract class AppDTB_Chi extends RoomDatabase {
     }
     public static class  PopulateData extends AsyncTask<Void, Void,Void> {
         private LoaiChiDao loaiChiDao;
-        private ChiDao chiDao;
 
         public PopulateData(AppDTB_Chi db) {
             loaiChiDao = db.loaiChiDao();
-            chiDao= db.chiDao();
         }
         @Override
         protected Void doInBackground(Void... voids) {

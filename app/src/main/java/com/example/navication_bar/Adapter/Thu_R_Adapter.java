@@ -86,12 +86,12 @@ public class Thu_R_Adapter extends RecyclerView.Adapter<Thu_R_Adapter.ThuViewHol
         public ImageView imageviewCT,imageviewedit;
         public ThuViewHolder(@NonNull View itemView) {
             super(itemView);
-            tv_makhoanthu = itemView.findViewById(R.id.tv_makhoanthu);
-            tv_sotienkhoanthu = itemView.findViewById(R.id.tv_sotienthu);
-            tv_timekhoanthu = itemView.findViewById(R.id.tv_ngaythu);
-            Tv_tenkhoanthu = itemView.findViewById(R.id.tv_tenkhoanthu);
-            imageviewCT = itemView.findViewById(R.id.imgseen);
-            imageviewedit = itemView.findViewById(R.id.imgedit);
+            tv_makhoanthu       = itemView.findViewById(R.id.tv_makhoanthu);
+            tv_sotienkhoanthu   = itemView.findViewById(R.id.tv_sotienthu);
+            tv_timekhoanthu     = itemView.findViewById(R.id.tv_ngaythu);
+            Tv_tenkhoanthu      = itemView.findViewById(R.id.tv_tenkhoanthu);
+            imageviewCT         = itemView.findViewById(R.id.imgseen);
+            imageviewedit       = itemView.findViewById(R.id.imgedit);
         }
     }
 }
