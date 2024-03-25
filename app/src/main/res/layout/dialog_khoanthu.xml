@@ -5,6 +5,7 @@
     android:background="@drawable/bg_white_corner_16"
     android:layout_margin="16dp"
     android:layout_height="wrap_content">
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -26,21 +27,23 @@
 
 
         <EditText
+            android:id="@+id/ed_idthu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_while_corner_gray_10"
+            android:background="@drawable/bg_while_spinner"
+
             android:enabled="false"
-            android:hint="ID khoản thu"
+            android:hint="ID khoản thu (Tự động điền)"
             android:padding="12dp"></EditText>
+
         <Spinner
             android:id="@+id/spinerkhoanthu"
             android:layout_width="match_parent"
-            android:padding="10dp"
             android:layout_height="40dp"
             android:layout_marginTop="10dp"
-            android:background="@drawable/bg_while_corner_gray_10">
-
+            android:visibility="visible">
         </Spinner>
+
         <EditText
             android:id="@+id/ed_tenkhoanthu"
             android:layout_marginTop="10dp"
@@ -52,7 +55,7 @@
             ></EditText>
 
         <EditText
-            android:id="@+id/ed_sotien"
+            android:id="@+id/ed_sotienthu"
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -62,7 +65,7 @@
             ></EditText>
 
         <EditText
-            android:id="@+id/ghichu"
+            android:id="@+id/ghichuthu"
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -95,7 +98,6 @@
                 android:layout_weight="1"
                 android:background="@drawable/bg_gray_corner16_yellow"
                 android:text="Lưu"></Button>
-
         </LinearLayout>
 
     </LinearLayout>

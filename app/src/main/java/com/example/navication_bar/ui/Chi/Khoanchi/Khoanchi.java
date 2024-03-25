@@ -46,9 +46,6 @@ public class Khoanchi extends Fragment {
 
     RecyclerView rv_khoanchi;
     Chi_R_Adapter mAdapter;
-
-    ImageView btn_edit;
-
     FloatingActionButton fab;
 
     @Override

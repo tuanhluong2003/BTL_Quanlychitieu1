@@ -8,4 +8,10 @@ public class Loaithu {
     @PrimaryKey(autoGenerate = true)
     public int idloaithu;
     public String Tenloaithu;
+
+    public boolean isDelete;
+    public Loaithu()
+    {
+        isDelete = false;
+    }
 }

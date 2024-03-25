@@ -10,56 +10,55 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.navication_bar.Entity.Chi;
+import com.example.navication_bar.Entity.Thu;
 import com.example.navication_bar.Listener.ItemClickListener;
 import com.example.navication_bar.R;
 
 import java.util.Date;
 import java.util.List;
 
-public class Chi_R_Adapter extends RecyclerView.Adapter<Chi_R_Adapter.ChiViewHolder>{
+public class Thu_R_Adapter extends RecyclerView.Adapter<Thu_R_Adapter.ThuViewHolder>{
     private LayoutInflater mlayoutInflater;
-    private List<Chi> mList;
+    private List<Thu> mList;
     public static ItemClickListener itemEditClickListener;
     public static ItemClickListener itemViewClickListener;
-    public Chi_R_Adapter(Context context) {
+    public Thu_R_Adapter(Context context) {
         mlayoutInflater= LayoutInflater.from(context);
     }
 
     public void setOnItemEditClickListener(ItemClickListener itemEditClickListener) {
-        Chi_R_Adapter.itemEditClickListener = itemEditClickListener;
+        Thu_R_Adapter.itemEditClickListener = itemEditClickListener;
     }
 
     public void setOnItemViewClickListener(ItemClickListener itemViewClickListener) {
-        Chi_R_Adapter.itemViewClickListener = itemViewClickListener;
+        Thu_R_Adapter.itemViewClickListener = itemViewClickListener;
     }
 
     @NonNull
     @Override
-    public ChiViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = mlayoutInflater.inflate(R.layout.item_khoanchi, parent, false);
-        return new ChiViewHolder(view);
+    public Thu_R_Adapter.ThuViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = mlayoutInflater.inflate(R.layout.item_khoanthu, parent, false);
+        return new Thu_R_Adapter.ThuViewHolder(view);
     }
-
     @Override
-    public void onBindViewHolder(@NonNull ChiViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull Thu_R_Adapter.ThuViewHolder holder, int position) {
         if (mList !=null){
-            Chi tmpchi = mList.get(position);
-            holder.tv_makhoanchi.setText("Mã khoa chi: "+ String.valueOf(tmpchi.idchi));
-            holder.tv_sotienkhoanchi.setText(String.valueOf(tmpchi.sotien)+ " VND");
-            holder.Tv_tenkhoanchi.setText("Tên khoản chi: " + tmpchi.ten);
-            holder.tv_timekhoanchi.setText("Date: " + new Date(tmpchi.Time).toString());
+            Thu tmpthu = mList.get(position);
+            holder.tv_makhoanthu.setText("Mã khoản thu: " +String.valueOf(tmpthu.idthu));
+            holder.tv_sotienkhoanthu.setText(String.valueOf(tmpthu.sotien) + " VND");
+            holder.Tv_tenkhoanthu.setText("Tên khoản thu: " + tmpthu.ten);
+            holder.tv_timekhoanthu.setText("Date: " + new Date(tmpthu.Time).toString());
             holder.imageviewCT.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    itemViewClickListener.onItemClick(tmpchi);
+                    itemViewClickListener.onItemClick(tmpthu);
                 }
             });
 
             holder.imageviewedit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    itemEditClickListener.onItemClick(tmpchi);
+                    itemEditClickListener.onItemClick(tmpthu);
                 }
             });
         }
@@ -71,26 +70,26 @@ public class Chi_R_Adapter extends RecyclerView.Adapter<Chi_R_Adapter.ChiViewHol
             return 0;
         return mList.size();
     }
-    public Chi getItem(int position){
+    public Thu getItem(int position){
         if(mList==null || position>= mList.size()){
             return null;
         }
         return mList.get(position);
     }
-    public void setList(List<Chi> mList) {
+    public void setList(List<Thu> mList) {
         this.mList = mList;
         notifyDataSetChanged();
     }
 
-    public static class ChiViewHolder extends RecyclerView.ViewHolder{
-        public TextView tv_makhoanchi,tv_sotienkhoanchi, tv_timekhoanchi, Tv_tenkhoanchi;
+    public static class ThuViewHolder extends RecyclerView.ViewHolder{
+        public TextView tv_makhoanthu,tv_sotienkhoanthu, tv_timekhoanthu, Tv_tenkhoanthu;
         public ImageView imageviewCT,imageviewedit;
-        public ChiViewHolder(@NonNull View itemView) {
+        public ThuViewHolder(@NonNull View itemView) {
             super(itemView);
-            tv_makhoanchi = itemView.findViewById(R.id.tv_makhoanchi);
-            tv_sotienkhoanchi = itemView.findViewById(R.id.tv_sotienchi);
-            tv_timekhoanchi = itemView.findViewById(R.id.tv_ngaychi);
-            Tv_tenkhoanchi = itemView.findViewById(R.id.tv_tenkhoanchi);
+            tv_makhoanthu = itemView.findViewById(R.id.tv_makhoanthu);
+            tv_sotienkhoanthu = itemView.findViewById(R.id.tv_sotienthu);
+            tv_timekhoanthu = itemView.findViewById(R.id.tv_ngaythu);
+            Tv_tenkhoanthu = itemView.findViewById(R.id.tv_tenkhoanthu);
             imageviewCT = itemView.findViewById(R.id.imgseen);
             imageviewedit = itemView.findViewById(R.id.imgedit);
         }
