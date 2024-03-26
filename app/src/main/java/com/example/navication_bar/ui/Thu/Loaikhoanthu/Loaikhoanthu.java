@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.navication_bar.Adapter.Loaithu_R_Adapter;
+import com.example.navication_bar.Dialog.AlertDialogg;
 import com.example.navication_bar.Dialog.loaikhoanthuDialog;
 import com.example.navication_bar.Entity.Chi;
 import com.example.navication_bar.Entity.Loaichi;
@@ -25,6 +26,7 @@ import com.example.navication_bar.Entity.Thu;
 import com.example.navication_bar.Entity.Loaithu;
 import com.example.navication_bar.Entity.Loaithu;
 import com.example.navication_bar.Entity.Thu;
+import com.example.navication_bar.Listener.DialogListener;
 import com.example.navication_bar.Listener.ItemClickListener;
 import com.example.navication_bar.R;
 import com.example.navication_bar.ui.Thu.Loaikhoanthu.LoaikhoanthuViewModel;
@@ -107,11 +109,19 @@ public class Loaikhoanthu extends Fragment {
 
                     @Override
                     public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                        int position = viewHolder.getLayoutPosition();
-                        Loaithu lt = mAdapter.getItem(position);
-                        lt.isDelete = true;
-                        Toast.makeText(getActivity(),"Loại thu đã được xóa",Toast.LENGTH_SHORT).show();
-                        mViewModel.update(lt);
+                        AlertDialogg dialogg = new AlertDialogg(currentFragment.getContext(),"Question","Bạn có chắc chắn muốn xóa loại thu này?", R.drawable.ic_launcher_foreground);
+                        dialogg.setDialogListener(new DialogListener() {
+                            @Override
+                            public void dialogPositive() {
+                                int position = viewHolder.getLayoutPosition();
+                                Loaithu lt = mAdapter.getItem(position);
+                                lt.isDelete = true;
+                                Toast.makeText(getActivity(),"Loại thu đã được xóa",Toast.LENGTH_SHORT).show();
+                                mViewModel.update(lt);
+                            }
+                        });
+                        dialogg.show();
+                        mAdapter.notifyDataSetChanged();
                     }
                 }
         );

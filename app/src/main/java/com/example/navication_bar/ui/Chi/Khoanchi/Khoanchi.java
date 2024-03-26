@@ -19,11 +19,13 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.navication_bar.Adapter.Chi_R_Adapter;
+import com.example.navication_bar.Dialog.AlertDialogg;
 import com.example.navication_bar.Dialog.khoanchiDialog;
 import com.example.navication_bar.Entity.Chi;
 import com.example.navication_bar.Entity.Loaichi;
 import com.example.navication_bar.Entity.Loaithu;
 import com.example.navication_bar.Entity.Thu;
+import com.example.navication_bar.Listener.DialogListener;
 import com.example.navication_bar.Listener.ItemClickListener;
 import com.example.navication_bar.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -118,15 +120,22 @@ public class Khoanchi extends Fragment {
 
                     @Override
                     public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                        int position = viewHolder.getLayoutPosition();
-                        Chi kt = mAdapter.getItem(position);
-                        Toast.makeText(getActivity(),"Khoản chi đã được xóa",Toast.LENGTH_SHORT).show();
-                        mViewModel.delete(kt);
+                        AlertDialogg dialogg = new AlertDialogg(current.getContext(),"Question","Bạn có chắc chắn muốn xóa khoản chi này?", R.drawable.ic_launcher_foreground);
+                        dialogg.setDialogListener(new DialogListener() {
+                            @Override
+                            public void dialogPositive() {
+                                int position = viewHolder.getLayoutPosition();
+                                Chi kt = mAdapter.getItem(position);
+                                Toast.makeText(getActivity(),"Khoản chi đã được xóa",Toast.LENGTH_SHORT).show();
+                                mViewModel.delete(kt);
+                            }
+                        });
+                        dialogg.show();
+                        mAdapter.notifyDataSetChanged();
                     }
                 }
         );
         helper.attachToRecyclerView((rv_khoanchi));
-
     }
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
