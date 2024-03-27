@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.navication_bar"
+    namespace = "com.google.BTL_Quanlychitieu"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.navication_bar"
+        applicationId = "com.google.BTL_Quanlychitieu"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

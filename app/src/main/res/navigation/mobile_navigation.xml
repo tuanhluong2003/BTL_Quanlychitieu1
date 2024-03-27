@@ -7,36 +7,36 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.example.navication_bar.ui.home.HomeFragment"
+        android:name="com.google.BTL_Quanlychitieu.ui.home.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/nav_chi"
-        android:name="com.example.navication_bar.ui.Chi.FrangmentChi"
+        android:name="com.google.BTL_Quanlychitieu.ui.Chi.FrangmentChi"
         android:label="Khoản chi"
         tools:layout="@layout/fragment_frangment_chi" />
 
     <fragment
         android:id="@+id/nav_thu"
-        android:name="com.example.navication_bar.ui.Thu.FragmentThu"
+        android:name="com.google.BTL_Quanlychitieu.ui.Thu.FragmentThu"
         android:label="Khoản thu"
         tools:layout="@layout/fragment_frangment_thu" />
 
     <fragment
         android:id="@+id/nav_gioithieu"
-        android:name="com.example.navication_bar.ui.Gioithieu.Fragment_Gioithieu"
+        android:name="com.google.BTL_Quanlychitieu.ui.Gioithieu.Fragment_Gioithieu"
         android:label="Giới thiệu"
         tools:layout="@layout/fragment__gioithieu" />
     <fragment
         android:id="@+id/nav_thongke"
-        android:name="com.example.navication_bar.ui.Thongke.Frangment_Thongke"
+        android:name="com.google.BTL_Quanlychitieu.ui.Thongke.Frangment_Thongke"
         android:label="Thống kê"
         tools:layout="@layout/fragment_frangment__thongke" />
 
     <fragment
         android:id="@+id/nav_thoat"
-        android:name="com.example.navication_bar.ui.home.HomeFragment"
+        android:name="com.google.BTL_Quanlychitieu.ui.home.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
 </navigation>
