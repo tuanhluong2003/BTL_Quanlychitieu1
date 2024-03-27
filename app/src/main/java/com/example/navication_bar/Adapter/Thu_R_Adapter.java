@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -62,6 +64,13 @@ public class Thu_R_Adapter extends RecyclerView.Adapter<Thu_R_Adapter.ThuViewHol
                 }
             });
         }
+        setAnimation(holder.itemView);
+    }
+
+    private void setAnimation(View view) {
+        ScaleAnimation animation = new ScaleAnimation(0f, 1f, 0f, 1f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        animation.setDuration(300);
+        view.startAnimation(animation);
     }
 
     @Override

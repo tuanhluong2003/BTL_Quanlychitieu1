@@ -12,9 +12,12 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.navication_bar.Adapter.Thu_R_Adapter;
@@ -33,6 +36,7 @@ import com.example.navication_bar.R;
 import com.example.navication_bar.ui.Thu.Khoanthu.KhoanthuViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Khoanthu extends Fragment {
@@ -52,6 +56,8 @@ public class Khoanthu extends Fragment {
     RecyclerView rv_khoanthu;
     Thu_R_Adapter mAdapter;
     FloatingActionButton fab;
+
+    EditText ed_search;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -108,6 +114,35 @@ public class Khoanthu extends Fragment {
         rv_khoanthu.setLayoutManager(new LinearLayoutManager(getActivity()));
         rv_khoanthu.setAdapter(mAdapter);
 
+        ed_search = view.findViewById(R.id.ed_search);
+        ed_search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                mViewModel.getAllThu().observe(current.getActivity(), new Observer<List<Thu>>() {
+                    @Override
+                    public void onChanged(List<Thu> thus) {
+                        List<Thu> tmp = new ArrayList<Thu>();
+                        for (Thu i: thus)
+                        {
+                            if (i.ten.contains(s.toString()))
+                            {
+                                tmp.add(i);
+                            }
+                        }
+                        mAdapter.setList(tmp);
+                    }
+                });
+            }
+        });
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -139,6 +174,14 @@ public class Khoanthu extends Fragment {
                 }
         );
         helper.attachToRecyclerView((rv_khoanthu));
+        mViewModel = new ViewModelProvider(this).get(KhoanthuViewModel.class);
+        mViewModel.getAllThu().observe(getActivity(), new Observer<List<Thu>>() {
+            @Override
+            public void onChanged(List<Thu> thus) {
+                mAdapter.setList(thus);
+                rv_khoanthu.scrollToPosition(mAdapter.getItemCount()-1);
+            }
+        });
 
     }
     @Override
@@ -147,15 +190,4 @@ public class Khoanthu extends Fragment {
         return inflater.inflate(R.layout.fragment_khoanthu, container, false);
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(KhoanthuViewModel.class);
-        mViewModel.getAllThu().observe(getActivity(), new Observer<List<Thu>>() {
-            @Override
-            public void onChanged(List<Thu> thus) {
-                mAdapter.setList(thus);
-            }
-        });
-    }
 }

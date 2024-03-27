@@ -20,11 +20,17 @@ public class Loaichi_spinner_adapter extends BaseAdapter {
         mLayoutInflater = LayoutInflater.from(context);
     }
 
+    public int findposbyid(int id)
+    {
+        for (int i=0; i<mList.size(); i++)
+            if (mList.get(i).idloaichi == id) return i;
+        return 0;
+    }
+
     public void setList(List<Loaichi> mList) {
         this.mList = mList;
         notifyDataSetChanged();
     }
-
     @Override
     public int getCount() {
         if(mList ==null)

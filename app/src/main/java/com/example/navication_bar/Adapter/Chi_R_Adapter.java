@@ -1,19 +1,26 @@
 package com.example.navication_bar.Adapter;
 
 import android.content.Context;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.navication_bar.Entity.Chi;
 import com.example.navication_bar.Listener.ItemClickListener;
 import com.example.navication_bar.R;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -41,6 +48,7 @@ public class Chi_R_Adapter extends RecyclerView.Adapter<Chi_R_Adapter.ChiViewHol
         return new ChiViewHolder(view);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onBindViewHolder(@NonNull ChiViewHolder holder, int position) {
         if (mList !=null){
@@ -63,7 +71,16 @@ public class Chi_R_Adapter extends RecyclerView.Adapter<Chi_R_Adapter.ChiViewHol
                 }
             });
         }
+
+        setAnimation(holder.itemView);
     }
+
+    private void setAnimation(View view) {
+        ScaleAnimation animation = new ScaleAnimation(0f, 1f, 0f, 1f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        animation.setDuration(300);
+        view.startAnimation(animation);
+    }
+
 
     @Override
     public int getItemCount() {

@@ -81,6 +81,7 @@ public class khoanchiDialog {
             ed_tenkhoanchi.setText(chi.ten);
             ed_Sotien.setText(String.valueOf(chi.sotien));
             ed_ghichu.setText(chi.ghichu);
+            spinner.setSelection(adapter.findposbyid(chi.idloaichi));
         }
 
         if (type.equals("edit"))
@@ -89,6 +90,7 @@ public class khoanchiDialog {
             ed_tenkhoanchi.setText(chi.ten);
             ed_Sotien.setText(String.valueOf(chi.sotien));
             ed_ghichu.setText(chi.ghichu);
+            spinner.setSelection(adapter.findposbyid(chi.idloaichi));
         }
 
 

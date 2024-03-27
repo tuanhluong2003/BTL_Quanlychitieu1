@@ -126,17 +126,12 @@ public class Loaikhoanthu extends Fragment {
                 }
         );
         helper.attachToRecyclerView((mRv));
-    }
-
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(LoaikhoanthuViewModel.class);
         mViewModel.getAllLoaiThu().observe(getActivity(), new Observer<List<Loaithu>>() {
             @Override
             public void onChanged(List<Loaithu> loaiThus) {
                 mAdapter.setList(loaiThus);
+                mRv.scrollToPosition(mAdapter.getItemCount()-1);
             }
         });
     }

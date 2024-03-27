@@ -20,13 +20,6 @@ public abstract class AppDTB_Chi extends RoomDatabase {
     public  abstract LoaiChiDao loaiChiDao();
     public  abstract ChiDao chiDao();
 
-//    static Migration mygration3_4 = new Migration(3,4) {
-//        @Override
-//        public void migrate(@NonNull SupportSQLiteDatabase database) {
-//            database.execSQL("ALTER TABLE tableloaichi ADD COLUMN year BOOLEAN");
-//        }
-//    };
-
     public static AppDTB_Chi INSTANCE;
     private static RoomDatabase.Callback callback = new Callback() {
         @Override

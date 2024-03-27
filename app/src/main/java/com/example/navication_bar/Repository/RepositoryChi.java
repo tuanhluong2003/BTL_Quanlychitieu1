@@ -8,6 +8,7 @@ import androidx.lifecycle.LiveData;
 import com.example.navication_bar.Dao.ChiDao;
 import com.example.navication_bar.Entity.Chi;
 import com.example.navication_bar.Entity.ThongKeLoaiChi;
+import com.example.navication_bar.Entity.Thu;
 import com.example.navication_bar.RoomDTB.AppDTB_Chi;
 
 import java.util.List;

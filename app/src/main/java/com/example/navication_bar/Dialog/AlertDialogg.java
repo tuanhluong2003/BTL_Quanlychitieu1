@@ -24,9 +24,10 @@ public class AlertDialogg {
             this.context = context;
     }
 
-    public void setDialogListener(DialogListener listener)
+    public AlertDialogg setDialogListener(DialogListener listener)
     {
-        dialogListener = listener;
+        this.dialogListener = listener;
+        return this;
     }
 
     public void show()
