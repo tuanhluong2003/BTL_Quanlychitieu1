@@ -11,5 +11,7 @@ public class Chi {
     public String ten;
     public float sotien;
     public String ghichu;
-    public long Time;
+    public String date;
+
+    public String time;
 }

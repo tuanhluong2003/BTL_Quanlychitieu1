@@ -15,6 +15,7 @@ import androidx.lifecycle.Observer;
 import com.google.BTL_Quanlychitieu.Adapter.Loaithu_spinner_adapter;
 import com.google.BTL_Quanlychitieu.Entity.Thu;
 import com.google.BTL_Quanlychitieu.Entity.Loaithu;
+import com.google.BTL_Quanlychitieu.Other.Customdate;
 import com.google.BTL_Quanlychitieu.R;
 import com.google.BTL_Quanlychitieu.ui.Thu.Khoanthu.Khoanthu;
 import java.util.List;
@@ -111,7 +112,8 @@ public class khoanthuDialog {
                     tmp.ten = ed_tenkhoanthu.getText().toString();
                     tmp.sotien = Float.parseFloat(ed_Sotien.getText().toString());
                     tmp.ghichu = ed_ghichu.getText().toString();
-                    tmp.Time = System.currentTimeMillis();
+                    tmp.date = Customdate.getLocaldatenow().toString();
+                    tmp.time = Customdate.getLocaltimenow().toString();
                     tmp.idloaithu = adapter.getItem(spinner.getSelectedItemPosition()).idloaithu;
                     fragmentkhoanthu.getViewmodel().insert(tmp);
                     Toast.makeText(fragmentkhoanthu.getContext(), "Insert thành công", Toast.LENGTH_SHORT).show();

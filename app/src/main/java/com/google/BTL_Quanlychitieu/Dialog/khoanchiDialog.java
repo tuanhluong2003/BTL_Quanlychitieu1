@@ -17,9 +17,11 @@ import androidx.lifecycle.Observer;
 import com.google.BTL_Quanlychitieu.Adapter.Loaichi_spinner_adapter;
 import com.google.BTL_Quanlychitieu.Entity.Chi;
 import com.google.BTL_Quanlychitieu.Entity.Loaichi;
+import com.google.BTL_Quanlychitieu.Other.Customdate;
 import com.google.BTL_Quanlychitieu.ui.Chi.Khoanchi.Khoanchi;
 import com.google.BTL_Quanlychitieu.R;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class khoanchiDialog {
@@ -116,7 +118,8 @@ public class khoanchiDialog {
                     tmp.ten = ed_tenkhoanchi.getText().toString();
                     tmp.sotien = Float.parseFloat(ed_Sotien.getText().toString());
                     tmp.ghichu = ed_ghichu.getText().toString();
-                    tmp.Time = System.currentTimeMillis();
+                    tmp.date = Customdate.getLocaldatenow().toString();
+                    tmp.time = Customdate.getLocaltimenow().toString();
                     tmp.idloaichi = adapter.getItem(spinner.getSelectedItemPosition()).idloaichi;
                     fragmentkhoanchi.getViewmodel().insert(tmp);
                     Toast.makeText(fragmentkhoanchi.getContext(), "Insert thành công", Toast.LENGTH_SHORT).show();
