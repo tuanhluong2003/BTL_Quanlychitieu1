@@ -18,6 +18,9 @@ public interface ChiDao {
     @Query("Select * from tablechi")
     LiveData<List<Chi>> findAll();
 
+    @Query("Select * from tablechi where tablechi.date like :str")
+    LiveData<List<Chi>> findAll(String str);
+
     @Query("Select sum(sotien) from tablechi")
     LiveData<Float> sumTongChi();
 

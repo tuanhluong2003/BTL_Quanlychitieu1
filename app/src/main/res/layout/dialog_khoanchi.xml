@@ -33,7 +33,7 @@
                 android:id="@+id/ed_idchi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:enabled="true"
+                android:enabled="false"
                 android:hint="Mã khoản chi (auto)" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -70,6 +70,7 @@
                 android:id="@+id/ed_sotienchi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:hint="Số tiền" />
         </com.google.android.material.textfield.TextInputLayout>
 

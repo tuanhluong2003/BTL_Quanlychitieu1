@@ -22,9 +22,7 @@ import java.util.List;
 
 public class khoanthuDialog {
     Thu thu;
-
     Khoanthu fragmentkhoanthu;
-
     String type;
 
     public khoanthuDialog(Khoanthu khoanthu, String type,  Thu thu)
@@ -62,8 +60,6 @@ public class khoanthuDialog {
         ed_Sotien = dialog.findViewById(R.id.ed_sotienthu);
         ed_tenkhoanthu = dialog.findViewById(R.id.ed_tenkhoanthu);
         ed_ghichu = dialog.findViewById(R.id.ghichuthu);
-
-
         fragmentkhoanthu.getViewmodel().getAllLoaiThu().observe(fragmentkhoanthu.getActivity(), new Observer<List<Loaithu>>() {
             @Override
             public void onChanged(List<Loaithu> loaithus) {
@@ -79,6 +75,7 @@ public class khoanthuDialog {
             ed_tenkhoanthu.setText(thu.ten);
             ed_Sotien.setText(String.valueOf(thu.sotien));
             ed_ghichu.setText(thu.ghichu);
+            spinner.setSelection(adapter.findposbyid(thu.idloaithu));
         }
 
         if (type.equals("edit"))
@@ -87,6 +84,7 @@ public class khoanthuDialog {
             ed_tenkhoanthu.setText(thu.ten);
             ed_Sotien.setText(String.valueOf(thu.sotien));
             ed_ghichu.setText(thu.ghichu);
+            spinner.setSelection(adapter.findposbyid(thu.idloaithu));
         }
 
 
@@ -121,7 +119,6 @@ public class khoanthuDialog {
                 dialog.dismiss();
             }
         });
-
         dialog.show();
     }
 

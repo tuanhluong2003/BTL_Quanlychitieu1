@@ -16,7 +16,6 @@
         android:textSize="16sp"
         android:gravity="center"
         android:background="@drawable/bg_yellow_corner_16_topleft_topright">
-
     </TextView>
 
     <LinearLayout
@@ -34,8 +33,9 @@
                 android:id="@+id/ed_idthu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:enabled="false"
                 android:hint="Mã khoản thu (auto)"
-                android:visibility="invisible" />
+                />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Spinner
@@ -71,6 +71,7 @@
                 android:id="@+id/ed_sotienthu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:hint="Số tiền" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -114,7 +115,5 @@
                 android:background="@drawable/bg_gray_corner16_yellow"
                 android:text="Lưu"></Button>
         </LinearLayout>
-
     </LinearLayout>
-
 </LinearLayout>

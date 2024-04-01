@@ -25,6 +25,14 @@ public class Loaithu_spinner_adapter extends BaseAdapter {
         notifyDataSetChanged();
     }
 
+    public int findposbyid(int id)
+    {
+        if (mList != null)
+        for (int i=0; i<mList.size(); i++)
+            if (mList.get(i).idloaithu == id) return i;
+        return 0;
+    }
+
     @Override
     public int getCount() {
         if(mList ==null)

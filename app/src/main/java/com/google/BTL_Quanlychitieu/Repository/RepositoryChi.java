@@ -1,7 +1,6 @@
 package com.google.BTL_Quanlychitieu.Repository;
 
 import android.app.Application;
-import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
 
@@ -10,6 +9,7 @@ import com.google.BTL_Quanlychitieu.Entity.Chi;
 import com.google.BTL_Quanlychitieu.Entity.ThongKeLoaiChi;
 import com.google.BTL_Quanlychitieu.RoomDTB.AppDTB_Chi;
 
+import java.util.Calendar;
 import java.util.List;
 
 public class RepositoryChi {
@@ -18,7 +18,16 @@ public class RepositoryChi {
 
     public RepositoryChi(Application application) {
         this.mChiDao = AppDTB_Chi.getDatabase(application).chiDao();
-        mAllChi= mChiDao.findAll(); //lấy về ds loại chi
+        int thang = CurrentTime.Currenttime.get(Calendar.MONTH)+1;
+        int nam = CurrentTime.Currenttime.get(Calendar.YEAR);
+        mAllChi= mChiDao.findAll((thang < 10 ? nam+ "-0"+thang+"-%" : nam+"-"+thang+"-%")); //lấy về ds loại chi theo thanh hien tai
+    }
+
+    public void Loaddata()
+    {
+        int thang = CurrentTime.Currenttime.get(Calendar.MONTH)+1;
+        int nam = CurrentTime.Currenttime.get(Calendar.YEAR);
+        mAllChi= mChiDao.findAll((thang < 10 ? nam+ "-0"+thang+"-%" : nam+"-"+thang+"-%"));
     }
     public LiveData<List<Chi>> getAllchi(){
         return mAllChi;
@@ -33,48 +42,52 @@ public class RepositoryChi {
     }
 
     public void insert(Chi chi){
-        new InsertAsyncTask(mChiDao).execute(chi);
+        new InsertThread(mChiDao, chi).start();
 
     }
     public void delete(Chi chi){
-        new DeleteAsyncTask(mChiDao).execute(chi);
+        new DeleteThread(mChiDao,chi).start();
 
     }
 
     public void update(Chi chi){
-        new UpdateAsyncTask(mChiDao).execute(chi);
+        new UpdateThread(mChiDao, chi).start();
     }
-    class UpdateAsyncTask extends AsyncTask<Chi, Void, Void> {
+    class UpdateThread extends Thread {
         private ChiDao mChiDao;
-        public UpdateAsyncTask(ChiDao chiDao){
+        private Chi chi;
+        public UpdateThread(ChiDao chiDao, Chi ...chis){
             this.mChiDao=chiDao;
+            this.chi = chis[0];
         }
         @Override
-        protected Void doInBackground(Chi... chis) {
-            mChiDao.update(chis[0]);
-            return null;
+        public void run() {
+            mChiDao.update(this.chi);
         }
     }
-    class InsertAsyncTask extends AsyncTask<Chi, Void, Void>{
+    class InsertThread extends Thread{
         private ChiDao mChiDao;
-        public InsertAsyncTask(ChiDao chiDao){
+        private Chi chi;
+        public InsertThread(ChiDao chiDao, Chi ...chis){
             this.mChiDao=chiDao;
+            chi = chis[0];
         }
         @Override
-        protected Void doInBackground(Chi... chis) {
-            mChiDao.insert(chis[0]);
-            return null;
+        public void run() {
+            android.util.Log.d("them","thanhcong");
+            mChiDao.insert(chi);
         }
     }
-    class DeleteAsyncTask extends AsyncTask<Chi, Void, Void>{
+    class DeleteThread extends Thread{
         private ChiDao mChiDao;
-        public DeleteAsyncTask(ChiDao chiDao){
+        private Chi chi;
+        public DeleteThread(ChiDao chiDao, Chi ...chi){
             this.mChiDao=chiDao;
+            this.chi = chi[0];
         }
         @Override
-        protected Void doInBackground(Chi... chis) {
-            mChiDao.delete(chis[0]);
-            return null;
+        public void run() {
+            mChiDao.delete(chi);
         }
     }
 }

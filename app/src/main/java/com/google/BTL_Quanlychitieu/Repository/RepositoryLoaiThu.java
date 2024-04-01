@@ -1,7 +1,6 @@
 package com.google.BTL_Quanlychitieu.Repository;
 
 import android.app.Application;
-import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
 
@@ -26,46 +25,50 @@ public class RepositoryLoaiThu {
 
 
     public void insert(Loaithu loaiThu){
-        new InsertAsyncTask(mloaiThuDao).execute(loaiThu);
+        new InsertThread(mloaiThuDao, loaiThu).start();
     }
     public void delete(Loaithu loaiThu){
-        new DeleteAsyncTask(mloaiThuDao).execute(loaiThu);
+        new DeleteThread(mloaiThuDao,loaiThu).start();
 
     }
     public void update(Loaithu loaiThu){
-        new UpdateAsyncTask(mloaiThuDao).execute(loaiThu);
+        new UpdateThread(mloaiThuDao,loaiThu).start();
     }
-    class UpdateAsyncTask extends AsyncTask<Loaithu, Void, Void>{
+    class UpdateThread extends Thread{
         private LoaiThuDao mloaiThuDao;
-        public UpdateAsyncTask(LoaiThuDao loaiThuDao){
+        private Loaithu loaithu;
+        
+        public UpdateThread(LoaiThuDao loaiThuDao, Loaithu ...loaithus){
             this.mloaiThuDao=loaiThuDao;
+            this.loaithu = loaithus[0];
         }
         @Override
-        protected Void doInBackground(Loaithu... loaiThus) {
-            mloaiThuDao.update(loaiThus[0]);
-            return null;
+        public void run() {
+            mloaiThuDao.update(loaithu);
         }
     }
-    class InsertAsyncTask extends AsyncTask<Loaithu, Void, Void>{
+    class InsertThread extends Thread{
         private LoaiThuDao mloaiThuDao;
-        public InsertAsyncTask(LoaiThuDao loaiThuDao){
+        private Loaithu loaithu;
+        public InsertThread(LoaiThuDao loaiThuDao, Loaithu ...loaithus){
             this.mloaiThuDao=loaiThuDao;
+            this.loaithu = loaithus[0];
         }
         @Override
-        protected Void doInBackground(Loaithu... loaiThus) {
-            mloaiThuDao.insert(loaiThus[0]);
-            return null;
+        public void run() {
+            mloaiThuDao.insert(loaithu);
         }
     }
-    class DeleteAsyncTask extends AsyncTask<Loaithu, Void, Void>{
+    class DeleteThread extends Thread{
         private LoaiThuDao mloaiThuDao;
-        public DeleteAsyncTask(LoaiThuDao loaiThuDao){
+        private Loaithu loaithu;
+        public DeleteThread(LoaiThuDao loaiThuDao, Loaithu... loaiThus){
             this.mloaiThuDao=loaiThuDao;
+            this.loaithu = loaiThus[0];
         }
         @Override
-        protected Void doInBackground(Loaithu... loaiThus) {
-            mloaiThuDao.delete(loaiThus[0]);
-            return null;
+        public void run() {
+            mloaiThuDao.delete(loaithu);
         }
     }
 }

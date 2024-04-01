@@ -18,6 +18,9 @@ public interface ThuDao {
     @Query("Select * from tablethu")
     LiveData<List<Thu>> findAll();
 
+    @Query("Select * from tablethu where tablethu.date LIKE :strlike")
+    LiveData<List<Thu>> findAll(String strlike);
+
     @Query("Select sum(sotien) from tablethu")
     LiveData<Float> sumTongThu();
 

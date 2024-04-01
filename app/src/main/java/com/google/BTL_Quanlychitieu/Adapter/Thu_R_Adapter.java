@@ -1,6 +1,7 @@
 package com.google.BTL_Quanlychitieu.Adapter;
 
 import android.content.Context;
+import android.util.EventLogTags;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +18,6 @@ import com.google.BTL_Quanlychitieu.Listener.ItemClickListener;
 import com.google.BTL_Quanlychitieu.Other.Customdate;
 import com.google.BTL_Quanlychitieu.R;
 
-import java.util.Date;
 import java.util.List;
 
 public class Thu_R_Adapter extends RecyclerView.Adapter<Thu_R_Adapter.ThuViewHolder>{
