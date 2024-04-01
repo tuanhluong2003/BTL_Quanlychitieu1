@@ -20,14 +20,12 @@ public class RepositoryThu {
 
     public RepositoryThu(Application application) {
         this.mThuDao = App_DTB_Thu.getDatabase(application).thuDao();
-        int thang = CurrentTime.Currenttime.get(Calendar.MONTH)+1;
-        int nam = CurrentTime.Currenttime.get(Calendar.YEAR);
+        int thang = Calendar.getInstance().get(Calendar.MONTH)+1;
+        int nam = Calendar.getInstance().get(Calendar.YEAR);
         mAllThu= mThuDao.findAll((thang < 10 ? nam+ "-0"+thang+"-%" : nam+"-"+thang+"-%"));
     }
-    public void Loaddata()
+    public void Loaddata(int thang, int nam)
     {
-        int thang = CurrentTime.Currenttime.get(Calendar.MONTH)+1;
-        int nam = CurrentTime.Currenttime.get(Calendar.YEAR);
         mAllThu= mThuDao.findAll((thang < 10 ? nam+ "-0"+thang+"-%" : nam+"-"+thang+"-%"));
     }
     public LiveData<List<Thu>> getAllthu(){

@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.BTL_Quanlychitieu.Entity.Thu;
 import com.google.BTL_Quanlychitieu.Listener.ItemClickListener;
+import com.google.BTL_Quanlychitieu.Other.CustomNumber;
 import com.google.BTL_Quanlychitieu.Other.Customdate;
 import com.google.BTL_Quanlychitieu.R;
 
@@ -48,7 +49,7 @@ public class Thu_R_Adapter extends RecyclerView.Adapter<Thu_R_Adapter.ThuViewHol
         if (mList !=null){
             Thu tmpthu = mList.get(position);
             holder.tv_makhoanthu.setText("Mã khoản thu: " +String.valueOf(tmpthu.idthu));
-            holder.tv_sotienkhoanthu.setText(String.valueOf(tmpthu.sotien) + " VND");
+            holder.tv_sotienkhoanthu.setText(CustomNumber.formatNumber((int)tmpthu.sotien) + " VND");
             holder.Tv_tenkhoanthu.setText("Tên khoản thu: " + tmpthu.ten);
             holder.tv_timekhoanthu.setText("Thời gian: " + Customdate.ConvertDate(tmpthu.date) + " \t " + tmpthu.time);
             holder.imageviewCT.setOnClickListener(new View.OnClickListener() {

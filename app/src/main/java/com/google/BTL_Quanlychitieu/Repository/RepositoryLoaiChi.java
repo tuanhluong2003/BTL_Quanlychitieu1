@@ -22,7 +22,6 @@ public class RepositoryLoaiChi {
         return mAllLoaiChi;
     }
 
-
     public void insert(Loaichi loaiChi){
         new InsertThread(mLoaiChiDao,loaiChi).start();
     }

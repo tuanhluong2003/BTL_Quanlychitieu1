@@ -24,6 +24,9 @@ public interface ChiDao {
     @Query("Select sum(sotien) from tablechi")
     LiveData<Float> sumTongChi();
 
+    @Query("Select sum(sotien) from tablechi where tablechi.date like :strlike")
+    LiveData<Float> sumTongChi(String strlike);
+
     @Query("Select b.idloaichi,b.Tenloaichi,sum(a.sotien) as tong from tablechi a INNER JOIN tableloaichi b on a.idloaichi = b.idloaichi"+
             " GROUP BY  b.Tenloaichi")
     LiveData<List<ThongKeLoaiChi>> sumByLoaiChi();

@@ -24,6 +24,9 @@ public interface ThuDao {
     @Query("Select sum(sotien) from tablethu")
     LiveData<Float> sumTongThu();
 
+    @Query("Select sum(sotien) from tablethu where tablethu.date LIKE :strlike")
+    LiveData<Float> sumTongThu(String strlike);
+
     @Query("Select b.idloaithu,b.Tenloaithu,sum(a.sotien) as tong from tablethu a INNER JOIN tableloaithu b on a.idloaithu = b.idloaithu"+
             " GROUP BY  b.idloaithu")
     LiveData<List<ThongKeLoaiThu>> sumByLoaiThu();

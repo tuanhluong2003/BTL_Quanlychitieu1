@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.BTL_Quanlychitieu.Entity.Chi;
 import com.google.BTL_Quanlychitieu.Listener.ItemClickListener;
+import com.google.BTL_Quanlychitieu.Other.CustomNumber;
 import com.google.BTL_Quanlychitieu.Other.Customdate;
 import com.google.BTL_Quanlychitieu.R;
 
@@ -52,7 +53,7 @@ public class Chi_R_Adapter extends RecyclerView.Adapter<Chi_R_Adapter.ChiViewHol
         if (mList !=null){
             Chi tmpchi = mList.get(position);
             holder.tv_makhoanchi.setText("Mã khoa chi: "+ String.valueOf(tmpchi.idchi));
-            holder.tv_sotienkhoanchi.setText(String.valueOf(tmpchi.sotien)+ " VND");
+            holder.tv_sotienkhoanchi.setText(CustomNumber.formatNumber((int)tmpchi.sotien)+ " VND");
             holder.Tv_tenkhoanchi.setText("Tên khoản chi: " + tmpchi.ten);
             holder.tv_timekhoanchi.setText("Thời gian: " + Customdate.ConvertDate(tmpchi.date) + " \t " + tmpchi.time);
             holder.imageviewCT.setOnClickListener(new View.OnClickListener() {

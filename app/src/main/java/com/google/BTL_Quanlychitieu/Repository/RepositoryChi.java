@@ -16,21 +16,28 @@ public class RepositoryChi {
     private ChiDao mChiDao;
     private LiveData<List<Chi>> mAllChi;
 
+    private LiveData<Float> tongchi;
+
     public RepositoryChi(Application application) {
         this.mChiDao = AppDTB_Chi.getDatabase(application).chiDao();
-        int thang = CurrentTime.Currenttime.get(Calendar.MONTH)+1;
-        int nam = CurrentTime.Currenttime.get(Calendar.YEAR);
+        int thang = Calendar.getInstance().get(Calendar.MONTH)+1;
+        int nam = Calendar.getInstance().get(Calendar.YEAR);
         mAllChi= mChiDao.findAll((thang < 10 ? nam+ "-0"+thang+"-%" : nam+"-"+thang+"-%")); //lấy về ds loại chi theo thanh hien tai
+        tongchi = mChiDao.sumTongChi((thang < 10 ? nam+ "-0"+thang+"-%" : nam+"-"+thang+"-%"));
     }
 
-    public void Loaddata()
+
+
+    public void Loaddata(int thang, int nam)
     {
-        int thang = CurrentTime.Currenttime.get(Calendar.MONTH)+1;
-        int nam = CurrentTime.Currenttime.get(Calendar.YEAR);
         mAllChi= mChiDao.findAll((thang < 10 ? nam+ "-0"+thang+"-%" : nam+"-"+thang+"-%"));
     }
     public LiveData<List<Chi>> getAllchi(){
         return mAllChi;
+    }
+
+    public LiveData<Float> getTongchi(){
+        return tongchi;
     }
 
     public LiveData<Float> sumTongChi(){

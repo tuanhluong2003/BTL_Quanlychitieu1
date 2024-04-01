@@ -20,6 +20,7 @@ public class KhoanchiViewModel extends AndroidViewModel {
     private LiveData<List<Chi>> mAllChi;
     private LiveData<List<Loaichi>> mAllLoaiChi;
 
+
     public KhoanchiViewModel(@NonNull Application application) {
         super(application);
         mrepositoryChi= new RepositoryChi(application);
@@ -27,9 +28,9 @@ public class KhoanchiViewModel extends AndroidViewModel {
         mRepositoryLoaiChi = new RepositoryLoaiChi(application);
         mAllLoaiChi = mRepositoryLoaiChi.getAllLoaiChi();
     }
-    public void Loaddata()
+    public void Loaddata(int thang, int nam)
     {
-        mrepositoryChi.Loaddata();
+        mrepositoryChi.Loaddata(thang, nam);
     }
 
     public LiveData<List<Loaichi>> getAllLoaiChi(){
@@ -38,6 +39,7 @@ public class KhoanchiViewModel extends AndroidViewModel {
     public LiveData<List<Chi>> getAllChi(){
         return mAllChi;
     }
+
     public void insert(Chi chi){
         mrepositoryChi.insert(chi);
     }

@@ -27,9 +27,9 @@ public class KhoanthuViewModel extends AndroidViewModel {
         mRepositoryLoaiThu = new RepositoryLoaiThu(application);
         mAllLoaiThu = mRepositoryLoaiThu.getAllLoaiThu();
     }
-    public void Loaddata()
+    public void Loaddata(int thang, int nam)
     {
-        mrepositoryThu.Loaddata();
+        mrepositoryThu.Loaddata(thang, nam);
     }
     public LiveData<List<Loaithu>> getAllLoaiThu(){
         return mAllLoaiThu;
@@ -37,7 +37,6 @@ public class KhoanthuViewModel extends AndroidViewModel {
     }
     public LiveData<List<Thu>> getAllThu(){
         return mAllThu;
-
     }
     public void insert(Thu thu){
         mrepositoryThu.insert(thu);
