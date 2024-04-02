@@ -22,8 +22,7 @@ public class RepositoryChi {
         this.mChiDao = AppDTB_Chi.getDatabase(application).chiDao();
         int thang = Calendar.getInstance().get(Calendar.MONTH)+1;
         int nam = Calendar.getInstance().get(Calendar.YEAR);
-        mAllChi= mChiDao.findAll((thang < 10 ? nam+ "-0"+thang+"-%" : nam+"-"+thang+"-%")); //lấy về ds loại chi theo thanh hien tai
-        tongchi = mChiDao.sumTongChi((thang < 10 ? nam+ "-0"+thang+"-%" : nam+"-"+thang+"-%"));
+        mAllChi= mChiDao.findAll();
     }
 
 
@@ -50,7 +49,6 @@ public class RepositoryChi {
 
     public void insert(Chi chi){
         new InsertThread(mChiDao, chi).start();
-
     }
     public void delete(Chi chi){
         new DeleteThread(mChiDao,chi).start();

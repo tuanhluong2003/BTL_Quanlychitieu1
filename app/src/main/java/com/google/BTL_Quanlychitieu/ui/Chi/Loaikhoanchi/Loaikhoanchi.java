@@ -19,6 +19,7 @@ import com.google.BTL_Quanlychitieu.Adapter.Loaichi_R_Adapter;
 import com.google.BTL_Quanlychitieu.Dialog.AlertDialogg;
 import com.google.BTL_Quanlychitieu.Dialog.loaikhoanchiDialog;
 import com.google.BTL_Quanlychitieu.Entity.Chi;
+import com.google.BTL_Quanlychitieu.Entity.ChiDuKien;
 import com.google.BTL_Quanlychitieu.Entity.Loaichi;
 import com.google.BTL_Quanlychitieu.Entity.Loaithu;
 import com.google.BTL_Quanlychitieu.Entity.Thu;
@@ -92,6 +93,11 @@ public class Loaikhoanchi extends Fragment {
 
             @Override
             public void onItemClick(Loaithu position) {
+
+            }
+
+            @Override
+            public void onItemClick(ChiDuKien position) {
 
             }
         });

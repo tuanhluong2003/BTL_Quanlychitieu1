@@ -1,12 +1,14 @@
 package com.google.BTL_Quanlychitieu.ui.home;
 
 import static java.lang.Math.max;
+import static java.lang.Math.sqrt;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,17 +18,27 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.BTL_Quanlychitieu.Adapter.ChiHome_R_Adapter;
+import com.google.BTL_Quanlychitieu.Adapter.Chidukien_R_Adapter;
 import com.google.BTL_Quanlychitieu.Adapter.ThuHome_R_Adapter;
+import com.google.BTL_Quanlychitieu.Dialog.AlertDialogg;
+import com.google.BTL_Quanlychitieu.Dialog.khoanchidukienDialog;
 import com.google.BTL_Quanlychitieu.Dialog.ngansachDialog;
 import com.google.BTL_Quanlychitieu.Entity.Chi;
+import com.google.BTL_Quanlychitieu.Entity.ChiDuKien;
+import com.google.BTL_Quanlychitieu.Entity.Loaichi;
+import com.google.BTL_Quanlychitieu.Entity.Loaithu;
 import com.google.BTL_Quanlychitieu.Entity.Thu;
 import com.google.BTL_Quanlychitieu.Listener.DialogListener;
+import com.google.BTL_Quanlychitieu.Listener.ItemClickListener;
 import com.google.BTL_Quanlychitieu.Other.CustomNumber;
 import com.google.BTL_Quanlychitieu.Other.DataLocalManager;
+import com.google.BTL_Quanlychitieu.R;
 import com.google.BTL_Quanlychitieu.databinding.FragmentHomeBinding;
 import com.google.BTL_Quanlychitieu.ui.Chi.Khoanchi.Khoanchi;
 import com.google.BTL_Quanlychitieu.ui.Chi.Khoanchi.KhoanchiViewModel;
@@ -46,13 +58,22 @@ public class HomeFragment extends Fragment {
     TextView tvtongngansach;
 
     TextView tv_ngansachdu;
+
+    TextView tv_dukien;
     ProgressBar progressBar;
 
     RecyclerView rv_chi;
 
     RecyclerView rv_thu;
+
+    RecyclerView rv_chidukien;
+
+    Button btn_addukien;
     int tongthu;
     int tongchi;
+
+    int tongchidk;
+
 
     public HomeViewModel getViewmodel() {
         return mViewModel;
@@ -83,6 +104,9 @@ public class HomeFragment extends Fragment {
         progressBar = binding.progressbar;
         rv_chi = binding.rvChi;
         rv_thu = binding.rvThu;
+        rv_chidukien = binding.rvChidukien;
+        btn_addukien = binding.btnAdd;
+        tv_dukien = binding.tbDukien;
         binding.tbNgaythang.setText("Tháng "+ (Calendar.getInstance().get(Calendar.MONTH)+1) +" năm " + Calendar.getInstance().get(Calendar.YEAR));
         mViewModel.getTongchi().observe(getActivity(), new Observer<Float>() {
             @Override
@@ -118,6 +142,16 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        mViewModel.getTongchidukien().observe(getActivity(), new Observer<Float>() {
+            @Override
+            public void onChanged(Float aFloat) {
+                if (aFloat != null)
+                     tongchidk = aFloat.intValue();
+                else tongchidk = 0;
+                Loadprogressbar();
+            }
+        });
+
         progressBar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -149,6 +183,107 @@ public class HomeFragment extends Fragment {
                 adapterthu.setList(thus);
             }
         });
+
+
+        btn_addukien.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                khoanchidukienDialog dialog = new khoanchidukienDialog(current, "insert", null);
+                dialog.show();
+            }
+        });
+
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),1);
+        rv_chidukien.setLayoutManager(gridLayoutManager);
+        Chidukien_R_Adapter adapterchidk = new Chidukien_R_Adapter(getContext());
+        adapterchidk.setOnItemViewClickListener(new ItemClickListener() {
+            @Override
+            public void onItemClick(Thu position) {
+
+            }
+
+            @Override
+            public void onItemClick(Chi position) {
+
+            }
+
+            @Override
+            public void onItemClick(Loaichi position) {
+
+            }
+
+            @Override
+            public void onItemClick(Loaithu position) {
+
+            }
+
+            @Override
+            public void onItemClick(ChiDuKien position)
+            {
+                khoanchidukienDialog dialog = new khoanchidukienDialog(current, "seen", position);
+                dialog.show();
+            }
+        });
+
+        adapterchidk.setOnItemEditClickListener(new ItemClickListener() {
+            @Override
+            public void onItemClick(Thu position) {
+            }
+
+            @Override
+            public void onItemClick(Chi position) {
+
+            }
+
+            @Override
+            public void onItemClick(Loaichi position) {
+
+            }
+
+            @Override
+            public void onItemClick(Loaithu position) {
+
+            }
+            @Override
+            public void onItemClick(ChiDuKien position) {
+                khoanchidukienDialog dialog = new khoanchidukienDialog(current, "edit", position);
+                dialog.show();
+            }
+        });
+
+        rv_chidukien.setAdapter(adapterchidk);
+        mViewModel.getAllchidukien().observe(getActivity(), new Observer<List<ChiDuKien>>() {
+            @Override
+            public void onChanged(List<ChiDuKien> chiDuKiens) {
+                adapterchidk.setList(chiDuKiens);
+            }
+        });
+
+        ItemTouchHelper helper=new ItemTouchHelper(
+                new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT|ItemTouchHelper.RIGHT) {
+                    @Override
+                    public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                        return false;
+                    }
+
+                    @Override
+                    public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                        AlertDialogg dialogg = new AlertDialogg(current.getContext(),"Question","Bạn có chắc chắn muốn xóa khoản chi Dự kiến này?", R.drawable.ic_launcher_foreground)
+                                .setDialogListener(new DialogListener() {
+                                    @Override
+                                    public void dialogPositive() {
+                                        int position = viewHolder.getLayoutPosition();
+                                        ChiDuKien kt = adapterchidk.getItem(position);
+                                        Toast.makeText(getActivity(),"Khoản chi đã được xóa",Toast.LENGTH_SHORT).show();
+                                        mViewModel.deletechidk(kt);
+                                    }
+                                });
+                        dialogg.show();
+                        adapterchidk.notifyDataSetChanged();
+                    }
+                }
+        );
+        helper.attachToRecyclerView((rv_chidukien));
     }
 
     public void Loadprogressbar()
@@ -158,6 +293,7 @@ public class HomeFragment extends Fragment {
         tvtongngansach.setText("Ngân sách: " + CustomNumber.formatNumber(tonngansach) +" Đồng");
         progressBar.setProgress(max(0,tongchi-tongthu));
         tv_ngansachdu.setText("Ngân sách còn dư: " + CustomNumber.formatNumber(tonngansach-tongchi+tongthu)+ " Đồng");
+        tv_dukien.setText(CustomNumber.formatNumber(tonngansach - tongchi - tongchidk + tongthu) + " Đồng");
     }
     @Override
     public void onDestroyView() {

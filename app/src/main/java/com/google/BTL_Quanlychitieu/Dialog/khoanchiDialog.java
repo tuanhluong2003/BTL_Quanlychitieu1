@@ -127,7 +127,6 @@ public class khoanchiDialog {
                 dialog.dismiss();
             }
         });
-
         dialog.show();
     }
 

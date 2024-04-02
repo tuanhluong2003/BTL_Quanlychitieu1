@@ -24,12 +24,14 @@ import com.google.BTL_Quanlychitieu.Adapter.Thu_R_Adapter;
 import com.google.BTL_Quanlychitieu.Dialog.AlertDialogg;
 import com.google.BTL_Quanlychitieu.Dialog.khoanthuDialog;
 import com.google.BTL_Quanlychitieu.Entity.Chi;
+import com.google.BTL_Quanlychitieu.Entity.ChiDuKien;
 import com.google.BTL_Quanlychitieu.Entity.Loaichi;
 import com.google.BTL_Quanlychitieu.Entity.Thu;
 import com.google.BTL_Quanlychitieu.Entity.Loaithu;
 import com.google.BTL_Quanlychitieu.Listener.DialogListener;
 import com.google.BTL_Quanlychitieu.Listener.ItemClickListener;
 import com.google.BTL_Quanlychitieu.R;
+import com.google.BTL_Quanlychitieu.ui.Thu.KhoanthuViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -82,6 +84,11 @@ public class Khoanthu extends Fragment {
             public void onItemClick(Loaithu position) {
 
             }
+
+            @Override
+            public void onItemClick(ChiDuKien position) {
+
+            }
         });
 
         mAdapter.setOnItemEditClickListener(new ItemClickListener() {
@@ -102,6 +109,11 @@ public class Khoanthu extends Fragment {
 
             @Override
             public void onItemClick(Loaithu position) {
+
+            }
+
+            @Override
+            public void onItemClick(ChiDuKien position) {
 
             }
         });

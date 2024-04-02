@@ -1,4 +1,4 @@
-package com.google.BTL_Quanlychitieu.ui.Thu.Khoanthu;
+package com.google.BTL_Quanlychitieu.ui.Thu;
 
 import android.app.Application;
 
@@ -27,13 +27,9 @@ public class KhoanthuViewModel extends AndroidViewModel {
         mRepositoryLoaiThu = new RepositoryLoaiThu(application);
         mAllLoaiThu = mRepositoryLoaiThu.getAllLoaiThu();
     }
-    public void Loaddata(int thang, int nam)
-    {
-        mrepositoryThu.Loaddata(thang, nam);
-    }
+
     public LiveData<List<Loaithu>> getAllLoaiThu(){
         return mAllLoaiThu;
-
     }
     public LiveData<List<Thu>> getAllThu(){
         return mAllThu;
