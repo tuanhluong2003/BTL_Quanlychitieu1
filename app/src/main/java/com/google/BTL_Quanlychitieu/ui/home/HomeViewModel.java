@@ -9,6 +9,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.BTL_Quanlychitieu.Entity.Chi;
 import com.google.BTL_Quanlychitieu.Entity.Loaichi;
@@ -28,13 +29,30 @@ public class HomeViewModel extends AndroidViewModel {
 
     private LiveData<Float> tongthu;
 
+    private LiveData<List<Chi>> allchi;
+
+    private LiveData<List<Thu>> allthu;
+
     private RepositoryHome mrepositoryHome;
+
 
     public HomeViewModel(@NonNull Application application) {
         super(application);
         mrepositoryHome= new RepositoryHome(application);
         tongchi = mrepositoryHome.getTongchi();
         tongthu = mrepositoryHome.getTongthu();
+        allchi = mrepositoryHome.getAllchi();
+        allthu = mrepositoryHome.getAllthu();
+    }
+
+    public LiveData<List<Chi>> getAllchi()
+    {
+        return allchi;
+    }
+
+    public LiveData<List<Thu>> getAllthu()
+    {
+        return allthu;
     }
 
     public LiveData<Float> getTongchi()

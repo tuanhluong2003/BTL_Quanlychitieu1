@@ -16,7 +16,15 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.BTL_Quanlychitieu.Adapter.ChiHome_R_Adapter;
+import com.google.BTL_Quanlychitieu.Adapter.ThuHome_R_Adapter;
+import com.google.BTL_Quanlychitieu.Dialog.ngansachDialog;
+import com.google.BTL_Quanlychitieu.Entity.Chi;
+import com.google.BTL_Quanlychitieu.Entity.Thu;
+import com.google.BTL_Quanlychitieu.Listener.DialogListener;
 import com.google.BTL_Quanlychitieu.Other.CustomNumber;
 import com.google.BTL_Quanlychitieu.Other.DataLocalManager;
 import com.google.BTL_Quanlychitieu.databinding.FragmentHomeBinding;
@@ -24,6 +32,7 @@ import com.google.BTL_Quanlychitieu.ui.Chi.Khoanchi.Khoanchi;
 import com.google.BTL_Quanlychitieu.ui.Chi.Khoanchi.KhoanchiViewModel;
 
 import java.util.Calendar;
+import java.util.List;
 
 public class HomeFragment extends Fragment {
     private FragmentHomeBinding binding;
@@ -39,6 +48,9 @@ public class HomeFragment extends Fragment {
     TextView tv_ngansachdu;
     ProgressBar progressBar;
 
+    RecyclerView rv_chi;
+
+    RecyclerView rv_thu;
     int tongthu;
     int tongchi;
 
@@ -69,6 +81,8 @@ public class HomeFragment extends Fragment {
         tvtongngansach = binding.tvTongngansach;
         tv_ngansachdu = binding.tvNgansachdu;
         progressBar = binding.progressbar;
+        rv_chi = binding.rvChi;
+        rv_thu = binding.rvThu;
         binding.tbNgaythang.setText("Tháng "+ (Calendar.getInstance().get(Calendar.MONTH)+1) +" năm " + Calendar.getInstance().get(Calendar.YEAR));
         mViewModel.getTongchi().observe(getActivity(), new Observer<Float>() {
             @Override
@@ -81,6 +95,18 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        tvtongngansach.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ngansachDialog dialog = new ngansachDialog(current.getContext(), new DialogListener() {
+                    @Override
+                    public void dialogPositive() {
+                        Loadprogressbar();
+                    }
+                });
+                dialog.show();
+            }
+        });
         mViewModel.getTongthu().observe(getActivity(), new Observer<Float>() {
             @Override
             public void onChanged(Float aFloat) {
@@ -98,6 +124,31 @@ public class HomeFragment extends Fragment {
                 Loadprogressbar();
             }
         });
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(current.getContext());
+        linearLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
+        rv_chi.setLayoutManager(linearLayoutManager);
+        ChiHome_R_Adapter adapterchi = new ChiHome_R_Adapter(getContext());
+        rv_chi.setAdapter(adapterchi);
+        mViewModel.getAllchi().observe(getActivity(), new Observer<List<Chi>>() {
+            @Override
+            public void onChanged(List<Chi> chis) {
+                adapterchi.setList(chis);
+            }
+        });
+
+        LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(current.getContext());
+        linearLayoutManager1.setOrientation(RecyclerView.HORIZONTAL);
+
+        rv_thu.setLayoutManager(linearLayoutManager1);
+        ThuHome_R_Adapter adapterthu = new ThuHome_R_Adapter(getContext());
+        rv_thu.setAdapter(adapterthu);
+        mViewModel.getAllthu().observe(getActivity(), new Observer<List<Thu>>() {
+            @Override
+            public void onChanged(List<Thu> thus) {
+                adapterthu.setList(thus);
+            }
+        });
     }
 
     public void Loadprogressbar()
@@ -108,7 +159,6 @@ public class HomeFragment extends Fragment {
         progressBar.setProgress(max(0,tongchi-tongthu));
         tv_ngansachdu.setText("Ngân sách còn dư: " + CustomNumber.formatNumber(tonngansach-tongchi+tongthu)+ " Đồng");
     }
-
     @Override
     public void onDestroyView() {
         super.onDestroyView();
