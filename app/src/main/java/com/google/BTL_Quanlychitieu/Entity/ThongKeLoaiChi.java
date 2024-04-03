@@ -4,5 +4,5 @@ public class ThongKeLoaiChi {
     public int idloaichi;
 
     public String Tenloaichi;
-    public Float Tong;
+    public Float tong;
 }

@@ -10,8 +10,11 @@ import com.google.BTL_Quanlychitieu.Entity.Chi;
 import com.google.BTL_Quanlychitieu.Entity.ChiDuKien;
 import com.google.BTL_Quanlychitieu.Entity.Loaichi;
 import com.google.BTL_Quanlychitieu.Entity.Thu;
+import com.google.BTL_Quanlychitieu.Repository.RepositoryChi;
 import com.google.BTL_Quanlychitieu.Repository.RepositoryChiDuKien;
-import com.google.BTL_Quanlychitieu.Repository.RepositoryHome;
+import com.google.BTL_Quanlychitieu.Repository.RepositoryLoaiChi;
+import com.google.BTL_Quanlychitieu.Repository.RepositoryThu;
+
 import java.util.List;
 
 public class HomeViewModel extends AndroidViewModel {
@@ -30,22 +33,28 @@ public class HomeViewModel extends AndroidViewModel {
 
     private LiveData<List<ChiDuKien>> allchidukien;
 
-    private RepositoryHome mrepositoryHome;
+    private RepositoryThu mRepositoryThu;
+
+    private RepositoryChi mRepositoryChi;
 
     private RepositoryChiDuKien mrepositoryChiDuKien;
+
+    private RepositoryLoaiChi mRepositoryLoaiChi;
 
 
     public HomeViewModel(@NonNull Application application) {
         super(application);
-        mrepositoryHome= new RepositoryHome(application);
+        mRepositoryThu = new RepositoryThu(application);
+        mRepositoryChi = new RepositoryChi(application);
         mrepositoryChiDuKien = new RepositoryChiDuKien(application);
-        tongchi = mrepositoryHome.getTongchi();
-        tongthu = mrepositoryHome.getTongthu();
-        allchi = mrepositoryHome.getAllchi();
-        allthu = mrepositoryHome.getAllthu();
+        mRepositoryLoaiChi = new RepositoryLoaiChi(application);
+        tongchi = mRepositoryChi.getTongchi();
+        tongthu = mRepositoryThu.sumTongThu();
+        allchi = mRepositoryChi.getAllChibymonth();
+        allthu = mRepositoryThu.getAllThubymonth();
         allchidukien = mrepositoryChiDuKien.getmAllChiDuKien();
         tongchidukien = mrepositoryChiDuKien.getTongchidukien();
-        allLoaichi = mrepositoryHome.getAllLoaichi();
+        allLoaichi = mRepositoryLoaiChi.getAllLoaiChi();
     }
 
     public LiveData<List<Loaichi>> getAllLoaichi()
@@ -86,7 +95,7 @@ public class HomeViewModel extends AndroidViewModel {
     }
 
     public void insertchi(Chi chi){
-        mrepositoryHome.insert(chi);
+        mRepositoryChi.insert(chi);
     }
     public void deletechidk(ChiDuKien chi){
         mrepositoryChiDuKien.delete(chi);

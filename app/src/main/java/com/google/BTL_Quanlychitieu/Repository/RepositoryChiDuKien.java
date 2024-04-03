@@ -21,7 +21,7 @@ public class RepositoryChiDuKien {
         this.mChiDuKienDao = AppDTB_ChiDuKien.getDatabase(application).chiDuKienDao();
         int thang = Calendar.getInstance().get(Calendar.MONTH)+1;
         int nam = Calendar.getInstance().get(Calendar.YEAR);
-        mAllChiDuKien= mChiDuKienDao.findAll((thang < 10 ? nam+ "-0"+thang+"-%" : nam+"-"+thang+"-%"));
+        mAllChiDuKien= mChiDuKienDao.findAll();
         tongchidukien = mChiDuKienDao.sumTongChiDuKien((thang < 10 ? nam+ "-0"+thang+"-%" : nam+"-"+thang+"-%"));
     }
     

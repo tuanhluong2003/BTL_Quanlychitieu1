@@ -9,6 +9,7 @@ import androidx.room.Update;
 
 import com.google.BTL_Quanlychitieu.Entity.Chi;
 import com.google.BTL_Quanlychitieu.Entity.ThongKeLoaiChi;
+import com.google.BTL_Quanlychitieu.Entity.ThongKeTheoNgay;
 
 import java.util.List;
 
@@ -27,9 +28,12 @@ public interface ChiDao {
     @Query("Select sum(sotien) from tablechi where tablechi.date like :strlike")
     LiveData<Float> sumTongChi(String strlike);
 
-    @Query("Select b.idloaichi,b.Tenloaichi,sum(a.sotien) as tong from tablechi a INNER JOIN tableloaichi b on a.idloaichi = b.idloaichi"+
+    @Query("Select b.idloaichi,b.Tenloaichi,sum(a.sotien) as tong from tablechi a INNER JOIN tableloaichi b on a.idloaichi = b.idloaichi where date like :strlike"+
             " GROUP BY  b.Tenloaichi")
-    LiveData<List<ThongKeLoaiChi>> sumByLoaiChi();
+    LiveData<List<ThongKeLoaiChi>> sumByLoaiChi(String strlike);
+
+    @Query("Select a.date,sum(a.sotien) as tong from tablechi a Where a.date like :strlike GROUP BY  a.date")
+    LiveData<List<ThongKeTheoNgay>> sumByNgay(String strlike);
 
     @Insert
     void insert(Chi chi);

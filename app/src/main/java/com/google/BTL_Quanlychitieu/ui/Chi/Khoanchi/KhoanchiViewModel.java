@@ -28,10 +28,6 @@ public class KhoanchiViewModel extends AndroidViewModel {
         mRepositoryLoaiChi = new RepositoryLoaiChi(application);
         mAllLoaiChi = mRepositoryLoaiChi.getAllLoaiChi();
     }
-    public void Loaddata(int thang, int nam)
-    {
-        mrepositoryChi.Loaddata(thang, nam);
-    }
 
     public LiveData<List<Loaichi>> getAllLoaiChi(){
         return mAllLoaiChi;

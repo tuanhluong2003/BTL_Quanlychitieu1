@@ -8,6 +8,7 @@ import androidx.lifecycle.LiveData;
 
 import com.google.BTL_Quanlychitieu.Dao.ThuDao;
 import com.google.BTL_Quanlychitieu.Entity.ThongKeLoaiThu;
+import com.google.BTL_Quanlychitieu.Entity.ThongKeTheoNgay;
 import com.google.BTL_Quanlychitieu.Entity.Thu;
 import com.google.BTL_Quanlychitieu.RoomDTB.App_DTB_Thu;
 
@@ -18,22 +19,40 @@ public class RepositoryThu {
     private ThuDao mThuDao;
     private LiveData<List<Thu>> mAllThu;
 
+    LiveData<Float> sumtongthu;
+    private LiveData<List<Thu>> mAllThubymonth;
+
     public RepositoryThu(Application application) {
         this.mThuDao = App_DTB_Thu.getDatabase(application).thuDao();
         int thang = Calendar.getInstance().get(Calendar.MONTH)+1;
         int nam = Calendar.getInstance().get(Calendar.YEAR);
         mAllThu= mThuDao.findAll();
+        mAllThubymonth = mThuDao.findAll((thang < 10 ? nam+ "-0"+thang+"-%" : nam+"-"+thang+"-%"));
+        sumtongthu = mThuDao.sumTongThu((thang < 10 ? nam+ "-0"+thang+"-%" : nam+"-"+thang+"-%"));
     }
     public LiveData<List<Thu>> getAllthu(){
         return mAllThu;
     }
 
-    public LiveData<Float> sumTongThu(){
-        return mThuDao.sumTongThu();
+    public LiveData<List<Thu>> getAllThubymonth(){
+        return mAllThubymonth;
     }
 
-    public LiveData<List<ThongKeLoaiThu>> sumByLoaiThu(){
-        return mThuDao.sumByLoaiThu();
+    public LiveData<List<ThongKeTheoNgay>> getAllthutheongay(int thang, int nam)
+    {
+        return mThuDao.sumByNgay((thang < 10 ? nam+ "-0"+thang+"-%" : nam+"-"+thang+"-%"));
+    }
+
+    public LiveData<Float> sumTongThu(){
+        return sumtongthu;
+    }
+
+    public LiveData<Float> sumTongThu(int thang, int nam){
+        return mThuDao.sumTongThu((thang < 10 ? nam+ "-0"+thang+"-%" : nam+"-"+thang+"-%"));
+    }
+
+    public LiveData<List<ThongKeLoaiThu>> sumByLoaiThu(int thang, int nam){
+        return mThuDao.sumByLoaiThu((thang < 10 ? nam+ "-0"+thang+"-%" : nam+"-"+thang+"-%"));
     }
 
     public void insert(Thu thu){
