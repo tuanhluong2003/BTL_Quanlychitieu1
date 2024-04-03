@@ -28,8 +28,8 @@ public class Loaithu_spinner_adapter extends BaseAdapter {
     public int findposbyid(int id)
     {
         if (mList != null)
-        for (int i=0; i<mList.size(); i++)
-            if (mList.get(i).idloaithu == id) return i;
+            for (int i=0; i<mList.size(); i++)
+                if (mList.get(i).idloaithu == id) return i;
         return 0;
     }
 

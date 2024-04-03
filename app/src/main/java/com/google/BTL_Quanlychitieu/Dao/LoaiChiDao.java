@@ -14,7 +14,7 @@ import java.util.List;
 @Dao
 // phương thức để thực hiện các thao tác / bảng loại thu
 public interface LoaiChiDao {
-    @Query("Select * from tableloaichi where tableloaichi.isDelete <> TRUE")
+    @Query("Select * from tableloaichi where tableloaichi.isDelete = 0")
     LiveData<List<Loaichi>> findAll();
 
     @Insert

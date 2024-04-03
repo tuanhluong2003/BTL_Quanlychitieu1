@@ -116,7 +116,7 @@ public class Loaikhoanchi extends Fragment {
                             public void dialogPositive() {
                                 int position = viewHolder.getLayoutPosition();
                                 Loaichi lt = mAdapter.getItem(position);
-                                lt.isDelete = true;
+                                lt.isDelete = 1;
                                 Toast.makeText(getActivity(),"Loại chi đã được xóa",Toast.LENGTH_SHORT).show();
                                 mViewModel.update(lt);
                             }

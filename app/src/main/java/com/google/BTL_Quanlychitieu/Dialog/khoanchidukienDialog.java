@@ -81,11 +81,11 @@ public class khoanchidukienDialog {
 
         tv_gio.setText(Customdate.getLocaltimenow().toString());
         tv_ngay.setText(Customdate.getLocaldatenow().toString());
-
-
         homeFragment.getViewmodel().getAllLoaichi().observe(homeFragment.getActivity(), new Observer<List<Loaichi>>() {
             @Override
-            public void onChanged(List<Loaichi> loaichis) {
+            public void onChanged(List<Loaichi> loaichis)
+            {
+                android.util.Log.d("thongbao", loaichis.toString());
                 adapter.setList(loaichis);
             }
         });

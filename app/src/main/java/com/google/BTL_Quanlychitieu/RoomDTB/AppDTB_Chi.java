@@ -34,7 +34,7 @@ public abstract class AppDTB_Chi extends RoomDatabase {
         if(INSTANCE == null){
             synchronized (AppDTB_Chi.class){
                 INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                                AppDTB_Chi.class, "dlchi_db")
+                                AppDTB_Chi.class, "dlchii_db")
                         .fallbackToDestructiveMigration()
                         .addCallback(callback)  //đổ dl khi bđ chạy
 //                        .addMigrations(mygration3_4)

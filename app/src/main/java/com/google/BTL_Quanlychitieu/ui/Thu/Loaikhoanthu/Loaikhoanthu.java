@@ -37,7 +37,6 @@ public class Loaikhoanthu extends Fragment {
     private RecyclerView mRv;
     private Loaithu_R_Adapter mAdapter;
 
-
     FloatingActionButton fab;
 
     private LoaikhoanthuViewModel mViewModel;
@@ -118,7 +117,7 @@ public class Loaikhoanthu extends Fragment {
                             public void dialogPositive() {
                                 int position = viewHolder.getLayoutPosition();
                                 Loaithu lt = mAdapter.getItem(position);
-                                lt.isDelete = true;
+                                lt.isDelete = 1;
                                 Toast.makeText(getActivity(),"Loại thu đã được xóa",Toast.LENGTH_SHORT).show();
                                 mViewModel.update(lt);
                             }

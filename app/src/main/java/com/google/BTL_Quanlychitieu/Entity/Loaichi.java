@@ -8,8 +8,8 @@ public class Loaichi {
     @PrimaryKey(autoGenerate = true)
     public int idloaichi;
     public String Tenloaichi;
-    public boolean isDelete;
+    public int isDelete;
     public Loaichi() {
-        this.isDelete = false;
+        this.isDelete = 0;
     }
 }

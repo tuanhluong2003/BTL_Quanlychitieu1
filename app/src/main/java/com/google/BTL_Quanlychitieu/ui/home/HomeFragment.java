@@ -50,7 +50,7 @@ public class HomeFragment extends Fragment {
     private FragmentHomeBinding binding;
     HomeFragment current;
 
-    HomeViewModel mViewModel;
+    HomeViewModel mViewModel = null;
 
     TextView tvtongchi;
     TextView tvtongthu;

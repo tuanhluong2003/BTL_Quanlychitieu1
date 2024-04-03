@@ -12,7 +12,7 @@ import com.google.BTL_Quanlychitieu.Entity.Loaithu;
 import java.util.List;
 @Dao
 public interface LoaiThuDao {
-    @Query("Select * from tableloaithu a where a.isDelete <> TRUE")
+    @Query("Select * from tableloaithu a where a.isDelete = 0")
     LiveData<List<Loaithu>> findAll();
 
     @Insert

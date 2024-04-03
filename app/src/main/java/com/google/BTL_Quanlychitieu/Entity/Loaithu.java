@@ -9,9 +9,9 @@ public class Loaithu {
     public int idloaithu;
     public String Tenloaithu;
 
-    public boolean isDelete;
+    public int isDelete;
     public Loaithu()
     {
-        isDelete = false;
+        isDelete = 0;
     }
 }
