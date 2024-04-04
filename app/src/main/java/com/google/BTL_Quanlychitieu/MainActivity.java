@@ -3,14 +3,18 @@ package com.google.BTL_Quanlychitieu;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.BTL_Quanlychitieu.Entity.user;
+import com.google.BTL_Quanlychitieu.Other.CustomPicture;
 import com.google.BTL_Quanlychitieu.Other.DataLocalManager;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -19,7 +23,10 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.BTL_Quanlychitieu.databinding.ActivityMainBinding;
+import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
+
+import java.lang.reflect.Type;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,8 +46,8 @@ public class MainActivity extends AppCompatActivity {
         Intent it = getIntent();
         Bundle bundle = it.getExtras();
         if (bundle != null) inituser(bundle);
-
-        setSupportActionBar(binding.appBarMain.toolbar);
+        Toolbar toolbar = binding.appBarMain.toolbar;
+        setSupportActionBar(toolbar);
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -50,6 +57,43 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        View view = binding.navView.getHeaderView(0);
+        img_header = view.findViewById(R.id.imageView_header);
+        email_header = view.findViewById(R.id.email_header);
+        name_header = view.findViewById(R.id.name_header);
+
+        Loadinfouser();
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                if (item.getItemId() == R.id.action_Signout)
+                {
+                    signout();
+                }
+                return false;
+            }
+        });
+    }
+
+    private void signout() {
+        DataLocalManager.remove_user();
+        Intent it = new Intent(MainActivity.this, Signin.class);
+        startActivity(it);
+        finish();
+    }
+
+    private void Loadinfouser() {
+        String tmpuser = DataLocalManager.get_user();
+        if (tmpuser != null) {
+            Gson gson = new Gson();
+            Type objtype = new TypeToken<user>() {
+            }.getType();
+            user tmp = gson.fromJson(tmpuser, objtype);
+            img_header.setImageURI(CustomPicture.getUri(tmp.avatar));
+            name_header.setText(tmp.name);
+            email_header.setText(tmp.username);
+        }
     }
 
     private void inituser(Bundle bundle) {
