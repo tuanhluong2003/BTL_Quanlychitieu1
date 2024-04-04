@@ -18,10 +18,25 @@ public class MysharedPreferences {
 
         editor.apply();
     }
-
     public int getIntvalue(String key)
     {
         SharedPreferences sharedPreferences = mContext.getSharedPreferences(MY_SHARE_PREFERENCES,Context.MODE_PRIVATE);
         return sharedPreferences.getInt(key,10000000);
     }
+
+    public void pushStringvalue(String key, String value)
+    {
+        SharedPreferences sharedPreferences = mContext.getSharedPreferences(MY_SHARE_PREFERENCES,Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(key,value);
+        editor.apply();
+    }
+
+    public String getStringvalue(String key)
+    {
+        SharedPreferences sharedPreferences = mContext.getSharedPreferences(MY_SHARE_PREFERENCES,Context.MODE_PRIVATE);
+        return sharedPreferences.getString(key,null);
+    }
+
+
 }

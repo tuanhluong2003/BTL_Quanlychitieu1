@@ -1,5 +1,6 @@
 plugins {
     id("com.android.application")
+    id ("com.google.gms.google-services")
 }
 
 android {
@@ -28,6 +29,7 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
     buildFeatures {
         viewBinding = true
     }
@@ -51,6 +53,13 @@ dependencies {
     annotationProcessor("androidx.room:room-compiler:2.5.1")
     testImplementation("androidx.room:room-testing:2.5.1")
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
-    implementation("com.google.code.gson:gson:2.10.1")
+
+    implementation (platform("com.google.firebase:firebase-bom:32.8.0"))
+    implementation ("com.google.firebase:firebase-analytics")
+
+    implementation(platform("com.google.firebase:firebase-bom:32.8.0"))
+    implementation("com.google.firebase:firebase-firestore")
+
+    implementation ("com.google.code.gson:gson:2.10.1")
 
 }

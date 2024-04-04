@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "58388461512",
+    "project_id": "quanlychitieu-7f67f",
+    "storage_bucket": "quanlychitieu-7f67f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:58388461512:android:00afb47b283ec8edefb2fd",
+        "android_client_info": {
+          "package_name": "com.google.BTL_Quanlychitieu"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9fLGV7slt5syJwGus2O6QNoFiENYiRCI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

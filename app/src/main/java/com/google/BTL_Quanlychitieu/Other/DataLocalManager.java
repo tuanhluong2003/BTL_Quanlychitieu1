@@ -6,6 +6,7 @@ import java.util.ConcurrentModificationException;
 
 public class DataLocalManager {
     private static final String MUC_CHI_TIEU = "MUC_CHI_TIEU";
+    private static final String USER = "USER";
     private static DataLocalManager instance;
     private MysharedPreferences mysharedPreferences;
 
@@ -24,6 +25,18 @@ public class DataLocalManager {
     {
         return instance.mysharedPreferences.getIntvalue(MUC_CHI_TIEU);
     }
+
+    public static void update_user(String value)
+    {
+        instance.mysharedPreferences.pushStringvalue(USER, value);
+    }
+
+    public static String get_user()
+    {
+        return instance.mysharedPreferences.getStringvalue(USER);
+    }
+
+
 
 
 
