@@ -13,6 +13,7 @@ import com.google.BTL_Quanlychitieu.Entity.Thu;
 import com.google.BTL_Quanlychitieu.Repository.RepositoryChi;
 import com.google.BTL_Quanlychitieu.Repository.RepositoryChiDuKien;
 import com.google.BTL_Quanlychitieu.Repository.RepositoryLoaiChi;
+import com.google.BTL_Quanlychitieu.Repository.RepositoryLoaiThu;
 import com.google.BTL_Quanlychitieu.Repository.RepositoryThu;
 
 import java.util.List;
@@ -55,6 +56,10 @@ public class HomeViewModel extends AndroidViewModel {
         allchidukien = mrepositoryChiDuKien.getmAllChiDuKien();
         tongchidukien = mrepositoryChiDuKien.getTongchidukien();
         allLoaichi = mRepositoryLoaiChi.getAllLoaiChi();
+    }
+
+    public void insert(Loaichi loaichi){
+        mRepositoryLoaiChi.insert(loaichi);
     }
 
     public LiveData<List<Loaichi>> getAllLoaichi()

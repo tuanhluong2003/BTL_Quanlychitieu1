@@ -34,6 +34,10 @@ public class KhoanthuViewModel extends AndroidViewModel {
     public LiveData<List<Thu>> getAllThu(){
         return mAllThu;
     }
+
+    public void insert(Loaithu loaithu){
+        mRepositoryLoaiThu.insert(loaithu);
+    }
     public void insert(Thu thu){
         mrepositoryThu.insert(thu);
     }

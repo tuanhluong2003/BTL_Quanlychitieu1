@@ -33,7 +33,7 @@ public abstract class App_DTB_Thu extends RoomDatabase {
         if(INSTANCE == null){
             synchronized (App_DTB_Thu.class){
                 INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                                App_DTB_Thu.class, "dlthuu_db")
+                                App_DTB_Thu.class, "dlieuthu_db")
                         .fallbackToDestructiveMigration()
                         .addCallback(callback)  //đổ dl khi bđ chạy
                         .build();

@@ -10,6 +10,7 @@ import com.google.BTL_Quanlychitieu.Dao.ThuDao;
 import com.google.BTL_Quanlychitieu.Entity.ThongKeLoaiThu;
 import com.google.BTL_Quanlychitieu.Entity.ThongKeTheoNgay;
 import com.google.BTL_Quanlychitieu.Entity.Thu;
+import com.google.BTL_Quanlychitieu.Other.MyApplication;
 import com.google.BTL_Quanlychitieu.RoomDTB.App_DTB_Thu;
 
 import java.util.Calendar;
@@ -26,9 +27,9 @@ public class RepositoryThu {
         this.mThuDao = App_DTB_Thu.getDatabase(application).thuDao();
         int thang = Calendar.getInstance().get(Calendar.MONTH)+1;
         int nam = Calendar.getInstance().get(Calendar.YEAR);
-        mAllThu= mThuDao.findAll();
-        mAllThubymonth = mThuDao.findAll((thang < 10 ? nam+ "-0"+thang+"-%" : nam+"-"+thang+"-%"));
-        sumtongthu = mThuDao.sumTongThu((thang < 10 ? nam+ "-0"+thang+"-%" : nam+"-"+thang+"-%"));
+        mAllThu= mThuDao.findAll(MyApplication.User.username);
+        mAllThubymonth = mThuDao.findAll((thang < 10 ? nam+ "-0"+thang+"-%" : nam+"-"+thang+"-%"), MyApplication.User.username);
+        sumtongthu = mThuDao.sumTongThu((thang < 10 ? nam+ "-0"+thang+"-%" : nam+"-"+thang+"-%"), MyApplication.User.username);
     }
     public LiveData<List<Thu>> getAllthu(){
         return mAllThu;
@@ -40,7 +41,7 @@ public class RepositoryThu {
 
     public LiveData<List<ThongKeTheoNgay>> getAllthutheongay(int thang, int nam)
     {
-        return mThuDao.sumByNgay((thang < 10 ? nam+ "-0"+thang+"-%" : nam+"-"+thang+"-%"));
+        return mThuDao.sumByNgay((thang < 10 ? nam+ "-0"+thang+"-%" : nam+"-"+thang+"-%"), MyApplication.User.username);
     }
 
     public LiveData<Float> sumTongThu(){
@@ -48,11 +49,11 @@ public class RepositoryThu {
     }
 
     public LiveData<Float> sumTongThu(int thang, int nam){
-        return mThuDao.sumTongThu((thang < 10 ? nam+ "-0"+thang+"-%" : nam+"-"+thang+"-%"));
+        return mThuDao.sumTongThu((thang < 10 ? nam+ "-0"+thang+"-%" : nam+"-"+thang+"-%"),MyApplication.User.username);
     }
 
     public LiveData<List<ThongKeLoaiThu>> sumByLoaiThu(int thang, int nam){
-        return mThuDao.sumByLoaiThu((thang < 10 ? nam+ "-0"+thang+"-%" : nam+"-"+thang+"-%"));
+        return mThuDao.sumByLoaiThu((thang < 10 ? nam+ "-0"+thang+"-%" : nam+"-"+thang+"-%"), MyApplication.User.username);
     }
 
     public void insert(Thu thu){

@@ -10,6 +10,8 @@ public class Loaithu {
     public String Tenloaithu;
 
     public int isDelete;
+
+    public String user;
     public Loaithu()
     {
         isDelete = 0;

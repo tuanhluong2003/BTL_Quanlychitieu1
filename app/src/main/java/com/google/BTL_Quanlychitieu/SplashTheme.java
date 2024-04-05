@@ -35,9 +35,10 @@ public class SplashTheme  extends AppCompatActivity {
                } else {
                    Intent it = new Intent(SplashTheme.this, Signin.class);
                    startActivity(it);
+                   finish();
                }
            }
-       },2500);
+       },2000);
     }
 
     public void dangnhap(String username, String pass)
@@ -51,12 +52,6 @@ public class SplashTheme  extends AppCompatActivity {
                         Toast.makeText(SplashTheme.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
                         Intent it = new Intent(SplashTheme.this, MainActivity.class);
                         QueryDocumentSnapshot tmp = (QueryDocumentSnapshot) task.getResult().getDocuments().get(0);
-                        user tmpuser = new user(
-                                tmp.get("name").toString(),
-                                tmp.get("username").toString(),
-                                tmp.get("pass").toString(),
-                                tmp.get("avatar").toString());
-                        it.putExtra("dulieu", (Serializable) tmpuser);
                         startActivity(it);
                         finish();
                     }
@@ -64,6 +59,7 @@ public class SplashTheme  extends AppCompatActivity {
                     {
                         Intent it = new Intent(SplashTheme.this, Signin.class);
                         startActivity(it);
+                        finish();
                     }
                 });
     }

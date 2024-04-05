@@ -9,6 +9,7 @@ import com.google.BTL_Quanlychitieu.Dao.ChiDao;
 import com.google.BTL_Quanlychitieu.Entity.Chi;
 import com.google.BTL_Quanlychitieu.Entity.ThongKeLoaiChi;
 import com.google.BTL_Quanlychitieu.Entity.ThongKeTheoNgay;
+import com.google.BTL_Quanlychitieu.Other.MyApplication;
 import com.google.BTL_Quanlychitieu.RoomDTB.AppDTB_Chi;
 
 import java.util.Calendar;
@@ -26,9 +27,9 @@ public class RepositoryChi {
         this.mChiDao = AppDTB_Chi.getDatabase(application).chiDao();
         int thang = Calendar.getInstance().get(Calendar.MONTH)+1;
         int nam = Calendar.getInstance().get(Calendar.YEAR);
-        mAllChi= mChiDao.findAll();
-        tongchi = mChiDao.sumTongChi((thang < 10 ? nam+ "-0"+thang+"-%" : nam+"-"+thang+"-%"));
-        mAllChibymonth = mChiDao.findAll((thang < 10 ? nam+ "-0"+thang+"-%" : nam+"-"+thang+"-%"));
+        mAllChi= mChiDao.findAll(MyApplication.User.username);
+        tongchi = mChiDao.sumTongChi((thang < 10 ? nam+ "-0"+thang+"-%" : nam+"-"+thang+"-%"), MyApplication.User.username);
+        mAllChibymonth = mChiDao.findAll((thang < 10 ? nam+ "-0"+thang+"-%" : nam+"-"+thang+"-%"), MyApplication.User.username);
     }
 
     public LiveData<List<Chi>> getAllchi(){
@@ -44,15 +45,15 @@ public class RepositoryChi {
     }
 
     public LiveData<Float> getTongchi(int thang, int nam){
-        return mChiDao.sumTongChi((thang < 10 ? nam+ "-0"+thang+"-%" : nam+"-"+thang+"-%"));
+        return mChiDao.sumTongChi((thang < 10 ? nam+ "-0"+thang+"-%" : nam+"-"+thang+"-%"), MyApplication.User.username);
     }
 
     public LiveData<List<ThongKeLoaiChi>> sumByLoaiChi(int thang, int nam){
-        return mChiDao.sumByLoaiChi((thang < 10 ? nam+ "-0"+thang+"-%" : nam+"-"+thang+"-%"));
+        return mChiDao.sumByLoaiChi((thang < 10 ? nam+ "-0"+thang+"-%" : nam+"-"+thang+"-%"), MyApplication.User.username);
     }
     public LiveData<List<ThongKeTheoNgay>> getAllchitheongay(int thang, int nam)
     {
-        return mChiDao.sumByNgay((thang < 10 ? nam+ "-0"+thang+"-%" : nam+"-"+thang+"-%"));
+        return mChiDao.sumByNgay((thang < 10 ? nam+ "-0"+thang+"-%" : nam+"-"+thang+"-%"), MyApplication.User.username);
     }
 
     public void insert(Chi chi){

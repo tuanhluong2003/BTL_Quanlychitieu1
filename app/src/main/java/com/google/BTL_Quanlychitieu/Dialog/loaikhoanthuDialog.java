@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.BTL_Quanlychitieu.Entity.Loaithu;
+import com.google.BTL_Quanlychitieu.Other.MyApplication;
 import com.google.BTL_Quanlychitieu.R;
 import com.google.BTL_Quanlychitieu.ui.Thu.Loaikhoanthu.Loaikhoanthu;
 
@@ -78,6 +79,7 @@ public class loaikhoanthuDialog {
                 } else {
                     Loaithu tmp = new Loaithu();
                     tmp.Tenloaithu = ed_loaikhoanthu.getText().toString();
+                    tmp.user = MyApplication.User.username;
                     fragmentloaikhoanthu.getViewModel().insert(tmp);
                     Toast.makeText(fragmentloaikhoanthu.getContext(), "Insert thành công", Toast.LENGTH_SHORT).show();
                 }

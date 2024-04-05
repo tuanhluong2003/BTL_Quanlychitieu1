@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData;
 
 import com.google.BTL_Quanlychitieu.Dao.LoaiThuDao;
 import com.google.BTL_Quanlychitieu.Entity.Loaithu;
+import com.google.BTL_Quanlychitieu.Other.MyApplication;
 import com.google.BTL_Quanlychitieu.RoomDTB.App_DTB_Thu;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public class RepositoryLoaiThu {
 
     public RepositoryLoaiThu(Application application) {
         this.mloaiThuDao = App_DTB_Thu.getDatabase(application).loaiThuDao();
-        mAllLoaiThu= mloaiThuDao.findAll(); //lấy về ds loại thu
+        mAllLoaiThu= mloaiThuDao.findAll(MyApplication.User.username); //lấy về ds loại thu
     }
     public LiveData<List<Loaithu>> getAllLoaiThu(){
         return mAllLoaiThu;

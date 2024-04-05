@@ -16,6 +16,7 @@ import com.google.BTL_Quanlychitieu.Adapter.Loaithu_spinner_adapter;
 import com.google.BTL_Quanlychitieu.Entity.Thu;
 import com.google.BTL_Quanlychitieu.Entity.Loaithu;
 import com.google.BTL_Quanlychitieu.Other.Customdate;
+import com.google.BTL_Quanlychitieu.Other.MyApplication;
 import com.google.BTL_Quanlychitieu.R;
 import com.google.BTL_Quanlychitieu.ui.Thu.Khoanthu.Khoanthu;
 import java.util.List;
@@ -63,7 +64,17 @@ public class khoanthuDialog {
         fragmentkhoanthu.getViewmodel().getAllLoaiThu().observe(fragmentkhoanthu.getActivity(), new Observer<List<Loaithu>>() {
             @Override
             public void onChanged(List<Loaithu> loaithus) {
-                adapter.setList(loaithus);
+                if (loaithus != null && loaithus.size()!=0)
+                {
+                    adapter.setList(loaithus);
+                } else
+                {
+                    Loaithu tmp = new Loaithu();
+                    tmp.user = MyApplication.User.username;
+                    tmp.Tenloaithu = "Loại thu KXD";
+                    fragmentkhoanthu.getViewmodel().insert(tmp);
+                }
+
             }
         });
         spinner.setAdapter(adapter);
@@ -113,6 +124,7 @@ public class khoanthuDialog {
                     tmp.date = Customdate.getLocaldatenow().toString();
                     tmp.time = Customdate.getLocaltimenow().toString();
                     tmp.idloaithu = adapter.getItem(spinner.getSelectedItemPosition()).idloaithu;
+                    tmp.user = MyApplication.User.username;
                     fragmentkhoanthu.getViewmodel().insert(tmp);
                     Toast.makeText(fragmentkhoanthu.getContext(), "Insert thành công", Toast.LENGTH_SHORT).show();
                 }

@@ -11,14 +11,13 @@ import java.util.logging.Handler;
 
 public class MyApplication extends Application {
 
-    public static user User= null;
+    public static user User = null;
     @Override
     public void onCreate() {
         super.onCreate();
         DataLocalManager.init(getApplicationContext());
         CustomPicture.init(getApplicationContext());
         android.util.Log.d("thongbao","vao roi ne");
-
         String tmpuser = DataLocalManager.get_user();
         if (tmpuser != null)
             if (tmpuser != null){

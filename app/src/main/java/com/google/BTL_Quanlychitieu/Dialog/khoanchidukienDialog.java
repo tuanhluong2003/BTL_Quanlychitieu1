@@ -24,6 +24,7 @@ import com.google.BTL_Quanlychitieu.Entity.Chi;
 import com.google.BTL_Quanlychitieu.Entity.ChiDuKien;
 import com.google.BTL_Quanlychitieu.Entity.Loaichi;
 import com.google.BTL_Quanlychitieu.Other.Customdate;
+import com.google.BTL_Quanlychitieu.Other.MyApplication;
 import com.google.BTL_Quanlychitieu.R;
 import com.google.BTL_Quanlychitieu.ui.home.HomeFragment;
 
@@ -85,8 +86,15 @@ public class khoanchidukienDialog {
             @Override
             public void onChanged(List<Loaichi> loaichis)
             {
-                android.util.Log.d("thongbao", loaichis.toString());
-                adapter.setList(loaichis);
+                if (loaichis != null && loaichis.size() !=0)
+                    adapter.setList(loaichis);
+                else
+                {
+                    Loaichi tmp = new Loaichi();
+                    tmp.user = MyApplication.User.username;
+                    tmp.Tenloaichi = "Loại chi KXD";
+                    homeFragment.getViewmodel().insert(tmp);
+                }
             }
         });
         spinner.setAdapter(adapter);
@@ -168,6 +176,7 @@ public class khoanchidukienDialog {
                     tmpchi.ghichu = chidukien.ghichu;
                     tmpchi.date = chidukien.date;
                     tmpchi.time = chidukien.time;
+                    tmpchi.user = chidukien.user;
                     homeFragment.getViewmodel().insertchi(tmpchi);
                     homeFragment.getViewmodel().deletechidk(chidukien);
                     Toast.makeText(homeFragment.getContext(), "Đã hoàn thành", Toast.LENGTH_SHORT).show();
@@ -189,6 +198,7 @@ public class khoanchidukienDialog {
                     tmp.date = tv_ngay.getText().toString();
                     tmp.time = tv_gio.getText().toString();
                     tmp.idloaichi = adapter.getItem(spinner.getSelectedItemPosition()).idloaichi;
+                    tmp.user = MyApplication.User.username;
                     homeFragment.getViewmodel().insertchidk(tmp);
                     Toast.makeText(homeFragment.getContext(), "Insert thành công", Toast.LENGTH_SHORT).show();
                 }

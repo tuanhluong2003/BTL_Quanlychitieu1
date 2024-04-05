@@ -3,7 +3,6 @@
 
     <item android:drawable="@drawable/khongmot"
         />
-
     <item android:drawable="@drawable/thantai"
         android:gravity="center"
         android:height="200dp"

@@ -17,7 +17,9 @@ import androidx.lifecycle.Observer;
 import com.google.BTL_Quanlychitieu.Adapter.Loaichi_spinner_adapter;
 import com.google.BTL_Quanlychitieu.Entity.Chi;
 import com.google.BTL_Quanlychitieu.Entity.Loaichi;
+import com.google.BTL_Quanlychitieu.Entity.Loaithu;
 import com.google.BTL_Quanlychitieu.Other.Customdate;
+import com.google.BTL_Quanlychitieu.Other.MyApplication;
 import com.google.BTL_Quanlychitieu.ui.Chi.Khoanchi.Khoanchi;
 import com.google.BTL_Quanlychitieu.R;
 
@@ -71,7 +73,15 @@ public class khoanchiDialog {
         fragmentkhoanchi.getViewmodel().getAllLoaiChi().observe(fragmentkhoanchi.getActivity(), new Observer<List<Loaichi>>() {
             @Override
             public void onChanged(List<Loaichi> loaichis) {
-                adapter.setList(loaichis);
+                if (loaichis != null && loaichis.size() !=0)
+                    adapter.setList(loaichis);
+                else
+                {
+                    Loaichi tmp = new Loaichi();
+                    tmp.user = MyApplication.User.username;
+                    tmp.Tenloaichi = "Loại chi KXD";
+                    fragmentkhoanchi.getViewmodel().insert(tmp);
+                }
             }
         });
         spinner.setAdapter(adapter);
@@ -121,6 +131,7 @@ public class khoanchiDialog {
                     tmp.date = Customdate.getLocaldatenow().toString();
                     tmp.time = Customdate.getLocaltimenow().toString();
                     tmp.idloaichi = adapter.getItem(spinner.getSelectedItemPosition()).idloaichi;
+                    tmp.user = MyApplication.User.username;
                     fragmentkhoanchi.getViewmodel().insert(tmp);
                     Toast.makeText(fragmentkhoanchi.getContext(), "Insert thành công", Toast.LENGTH_SHORT).show();
                 }

@@ -8,16 +8,11 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.google.BTL_Quanlychitieu.Entity.user;
-import com.google.BTL_Quanlychitieu.Other.DataLocalManager;
 import com.google.BTL_Quanlychitieu.Other.MyApplication;
 import com.google.BTL_Quanlychitieu.databinding.ActivitySigninBinding;
-import com.google.common.reflect.TypeToken;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.gson.Gson;
-
 import java.io.Serializable;
-import java.lang.reflect.Type;
 
 public class Signin extends AppCompatActivity {
 
@@ -73,6 +68,7 @@ public class Signin extends AppCompatActivity {
                                 tmp.get("pass").toString(),
                                 tmp.get("avatar").toString());
                         it.putExtra("dulieu", (Serializable) tmpuser);
+                        MyApplication.User = tmpuser;
                         startActivity(it);
                         finish();
                     }

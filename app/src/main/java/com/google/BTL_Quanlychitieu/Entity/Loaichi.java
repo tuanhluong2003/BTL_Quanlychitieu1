@@ -9,6 +9,7 @@ public class Loaichi {
     public int idloaichi;
     public String Tenloaichi;
     public int isDelete;
+    public String user;
     public Loaichi() {
         this.isDelete = 0;
     }

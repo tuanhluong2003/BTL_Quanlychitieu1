@@ -266,14 +266,12 @@ public class Frangment_Thongke extends Fragment {
 
     public void Loadcharttheongay(List<ThongKeTheoNgay> listtheongay, LineChart lineChart, int tong)
     {
-
         List<String> xValues = new ArrayList<>();
         List<Entry> entries1 = new ArrayList<>();
-
         for (int i=0; i<listtheongay.size(); i++)
         {
             ThongKeTheoNgay xx = listtheongay.get(i);
-            xValues.add(xx.date);
+            xValues.add("" + xx.date.charAt(xx.date.length()-2)+ xx.date.charAt(xx.date.length()-1));
             entries1.add(new Entry(i, xx.tong));
         }
 
@@ -296,7 +294,6 @@ public class Frangment_Thongke extends Fragment {
         yAxis.setAxisLineWidth(2f);
         yAxis.setAxisLineColor(Color.BLACK);
         yAxis.setLabelCount(10);
-
 
         LineDataSet dataset1 = new LineDataSet(entries1, "Khoản chi");
         dataset1.setColor(Color.RED);

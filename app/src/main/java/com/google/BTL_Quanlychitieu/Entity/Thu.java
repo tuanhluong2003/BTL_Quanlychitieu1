@@ -12,6 +12,6 @@ public class Thu {
     public float sotien;
     public String ghichu;
     public String date;
-
     public String time;
+    public String user;
 }

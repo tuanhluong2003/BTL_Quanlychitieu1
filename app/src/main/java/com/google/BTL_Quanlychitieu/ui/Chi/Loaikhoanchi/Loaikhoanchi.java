@@ -34,8 +34,6 @@ public class Loaikhoanchi extends Fragment {
 
     private RecyclerView mRv;
     private Loaichi_R_Adapter mAdapter;
-
-
     FloatingActionButton fab;
 
     private LoaikhoanchiViewModel mViewModel;

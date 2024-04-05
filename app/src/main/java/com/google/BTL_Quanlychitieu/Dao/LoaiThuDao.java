@@ -12,8 +12,8 @@ import com.google.BTL_Quanlychitieu.Entity.Loaithu;
 import java.util.List;
 @Dao
 public interface LoaiThuDao {
-    @Query("Select * from tableloaithu a where a.isDelete = 0")
-    LiveData<List<Loaithu>> findAll();
+    @Query("Select * from tableloaithu a where a.isDelete = 0 and a.user like :struser")
+    LiveData<List<Loaithu>> findAll(String struser);
 
     @Insert
     void insert(Loaithu loaiThu);

@@ -36,6 +36,9 @@ public class KhoanchiViewModel extends AndroidViewModel {
         return mAllChi;
     }
 
+    public void insert(Loaichi loaichi){
+        mRepositoryLoaiChi.insert(loaichi);
+    }
     public void insert(Chi chi){
         mrepositoryChi.insert(chi);
     }

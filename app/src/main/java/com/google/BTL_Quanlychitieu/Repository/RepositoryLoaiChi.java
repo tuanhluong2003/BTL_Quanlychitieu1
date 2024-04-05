@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData;
 
 import com.google.BTL_Quanlychitieu.Dao.LoaiChiDao;
 import com.google.BTL_Quanlychitieu.Entity.Loaichi;
+import com.google.BTL_Quanlychitieu.Other.MyApplication;
 import com.google.BTL_Quanlychitieu.RoomDTB.AppDTB_Chi;
 
 import java.util.List;
@@ -16,7 +17,7 @@ public class RepositoryLoaiChi {
 
     public RepositoryLoaiChi(Application application) {
         this.mLoaiChiDao = AppDTB_Chi.getDatabase(application).loaiChiDao();
-        mAllLoaiChi= mLoaiChiDao.findAll();
+        mAllLoaiChi= mLoaiChiDao.findAll(MyApplication.User.username);
     }
     public LiveData<List<Loaichi>> getAllLoaiChi(){
         return mAllLoaiChi;

@@ -16,24 +16,24 @@ import java.util.List;
 @Dao
 // phương thức để thực hiện các thao tác / bảng loại chi
 public interface ChiDao {
-    @Query("Select * from tablechi")
-    LiveData<List<Chi>> findAll();
+    @Query("Select * from tablechi where tablechi.user like :struser order by tablechi.date ASC")
+    LiveData<List<Chi>> findAll(String struser);
 
-    @Query("Select * from tablechi where tablechi.date like :str")
-    LiveData<List<Chi>> findAll(String str);
+    @Query("Select * from tablechi where tablechi.date like :str AND tablechi.user like :struser order by tablechi.date ASC")
+    LiveData<List<Chi>> findAll(String str, String struser);
 
-    @Query("Select sum(sotien) from tablechi")
-    LiveData<Float> sumTongChi();
+    @Query("Select sum(sotien) from tablechi where tablechi.user like :struser")
+    LiveData<Float> sumTongChi(String struser);
 
-    @Query("Select sum(sotien) from tablechi where tablechi.date like :strlike")
-    LiveData<Float> sumTongChi(String strlike);
+    @Query("Select sum(sotien) from tablechi where tablechi.date like :strlike and tablechi.user like :struser")
+    LiveData<Float> sumTongChi(String strlike, String struser);
 
-    @Query("Select b.idloaichi,b.Tenloaichi,sum(a.sotien) as tong from tablechi a INNER JOIN tableloaichi b on a.idloaichi = b.idloaichi where date like :strlike"+
+    @Query("Select b.idloaichi,b.Tenloaichi,sum(a.sotien) as tong from tablechi a INNER JOIN tableloaichi b on a.idloaichi = b.idloaichi where date like :strlike and a.user like :struser"+
             " GROUP BY  b.Tenloaichi")
-    LiveData<List<ThongKeLoaiChi>> sumByLoaiChi(String strlike);
+    LiveData<List<ThongKeLoaiChi>> sumByLoaiChi(String strlike, String struser);
 
-    @Query("Select a.date,sum(a.sotien) as tong from tablechi a Where a.date like :strlike GROUP BY  a.date")
-    LiveData<List<ThongKeTheoNgay>> sumByNgay(String strlike);
+    @Query("Select a.date,sum(a.sotien) as tong from tablechi a Where a.date like :strlike and a.user like :struser GROUP BY  a.date")
+    LiveData<List<ThongKeTheoNgay>> sumByNgay(String strlike, String struser);
 
     @Insert
     void insert(Chi chi);

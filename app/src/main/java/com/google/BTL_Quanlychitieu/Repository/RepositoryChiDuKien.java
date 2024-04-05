@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData;
 
 import com.google.BTL_Quanlychitieu.Dao.ChiDuKienDao;
 import com.google.BTL_Quanlychitieu.Entity.ChiDuKien;
+import com.google.BTL_Quanlychitieu.Other.MyApplication;
 import com.google.BTL_Quanlychitieu.RoomDTB.AppDTB_ChiDuKien;
 
 import java.util.Calendar;
@@ -21,8 +22,8 @@ public class RepositoryChiDuKien {
         this.mChiDuKienDao = AppDTB_ChiDuKien.getDatabase(application).chiDuKienDao();
         int thang = Calendar.getInstance().get(Calendar.MONTH)+1;
         int nam = Calendar.getInstance().get(Calendar.YEAR);
-        mAllChiDuKien= mChiDuKienDao.findAll();
-        tongchidukien = mChiDuKienDao.sumTongChiDuKien((thang < 10 ? nam+ "-0"+thang+"-%" : nam+"-"+thang+"-%"));
+        mAllChiDuKien= mChiDuKienDao.findAll(MyApplication.User.username);
+        tongchidukien = mChiDuKienDao.sumTongChiDuKien((thang < 10 ? nam+ "-0"+thang+"-%" : nam+"-"+thang+"-%"), MyApplication.User.username);
     }
     
     public LiveData<List<ChiDuKien>> getmAllChiDuKien(){

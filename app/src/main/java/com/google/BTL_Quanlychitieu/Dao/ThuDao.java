@@ -16,24 +16,24 @@ import java.util.List;
 @Dao
 // phương thức để thực hiện các thao tác / bảng loại thu
 public interface ThuDao {
-    @Query("Select * from tablethu")
-    LiveData<List<Thu>> findAll();
+    @Query("Select * from tablethu where tablethu.user like :struser order by tablethu.date ASC")
+    LiveData<List<Thu>> findAll(String struser);
 
-    @Query("Select * from tablethu where tablethu.date LIKE :strlike")
-    LiveData<List<Thu>> findAll(String strlike);
+    @Query("Select * from tablethu where tablethu.date LIKE :strlike and tablethu.user like :struser order by tablethu.date ASC")
+    LiveData<List<Thu>> findAll(String strlike, String struser);
 
-    @Query("Select sum(sotien) from tablethu")
-    LiveData<Float> sumTongThu();
+    @Query("Select sum(sotien) from tablethu where tablethu.user like :struser")
+    LiveData<Float> sumTongThu(String struser);
 
-    @Query("Select sum(sotien) from tablethu where tablethu.date LIKE :strlike")
-    LiveData<Float> sumTongThu(String strlike);
+    @Query("Select sum(sotien) from tablethu where tablethu.date LIKE :strlike and tablethu.user like :struser")
+    LiveData<Float> sumTongThu(String strlike, String struser);
 
     @Query("Select b.idloaithu,b.Tenloaithu,sum(a.sotien) as tong from tablethu a INNER JOIN tableloaithu b on a.idloaithu = b.idloaithu"+
-            " where date like :strlike GROUP BY  b.idloaithu")
-    LiveData<List<ThongKeLoaiThu>> sumByLoaiThu(String strlike);
+            " where date like :strlike and a.user like :struser GROUP BY  b.idloaithu")
+    LiveData<List<ThongKeLoaiThu>> sumByLoaiThu(String strlike, String struser);
 
-    @Query("Select a.date,sum(a.sotien) as tong from tablethu a Where a.date like :strlike GROUP BY  a.date")
-    LiveData<List<ThongKeTheoNgay>> sumByNgay(String strlike);
+    @Query("Select a.date,sum(a.sotien) as tong from tablethu a Where a.date like :strlike and a.user like :struser GROUP BY  a.date")
+    LiveData<List<ThongKeTheoNgay>> sumByNgay(String strlike, String struser);
 
     @Insert
     void insert(Thu thu);
@@ -43,9 +43,5 @@ public interface ThuDao {
 
     @Delete
     void delete(Thu thu);
-
-    @Query("Delete from tablethu")
-    static void xoadulieu() {
-    }
 
 }

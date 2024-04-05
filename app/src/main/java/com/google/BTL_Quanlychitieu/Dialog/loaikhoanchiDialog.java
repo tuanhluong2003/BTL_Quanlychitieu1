@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.BTL_Quanlychitieu.Entity.Loaichi;
+import com.google.BTL_Quanlychitieu.Other.MyApplication;
 import com.google.BTL_Quanlychitieu.R;
 import com.google.BTL_Quanlychitieu.ui.Chi.Loaikhoanchi.Loaikhoanchi;
 
@@ -78,6 +79,7 @@ public class loaikhoanchiDialog {
                 } else {
                     Loaichi tmp = new Loaichi();
                     tmp.Tenloaichi = ed_loaikhoanchi.getText().toString();
+                    tmp.user = MyApplication.User.username;
                     fragmentloaikhoanchi.getViewModel().insert(tmp);
                     Toast.makeText(fragmentloaikhoanchi.getContext(), "Insert thành công", Toast.LENGTH_SHORT).show();
                 }
