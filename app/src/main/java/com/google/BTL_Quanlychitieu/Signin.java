@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.google.BTL_Quanlychitieu.Entity.user;
 import com.google.BTL_Quanlychitieu.Other.DataLocalManager;
+import com.google.BTL_Quanlychitieu.Other.MyApplication;
 import com.google.BTL_Quanlychitieu.databinding.ActivitySigninBinding;
 import com.google.common.reflect.TypeToken;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -27,12 +28,8 @@ public class Signin extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String tmpuser = DataLocalManager.get_user();
-        if (tmpuser != null){
-            Gson gson = new Gson();
-            Type objtype = new TypeToken<user>(){}.getType();
-            user tmp = gson.fromJson(tmpuser, objtype);
-            dangnhap(tmp.username, tmp.Pass);
+        if (MyApplication.User != null){
+            dangnhap(MyApplication.User.username, MyApplication.User.Pass);
         }
         binding = ActivitySigninBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());

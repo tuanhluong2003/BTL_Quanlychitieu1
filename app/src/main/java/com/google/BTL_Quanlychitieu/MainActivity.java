@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.google.BTL_Quanlychitieu.Entity.user;
 import com.google.BTL_Quanlychitieu.Other.CustomPicture;
 import com.google.BTL_Quanlychitieu.Other.DataLocalManager;
+import com.google.BTL_Quanlychitieu.Other.MyApplication;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.appcompat.widget.Toolbar;
@@ -79,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
     private void signout() {
         DataLocalManager.remove_user();
         Intent it = new Intent(MainActivity.this, Signin.class);
+        MyApplication.User = null;
         startActivity(it);
         finish();
     }
