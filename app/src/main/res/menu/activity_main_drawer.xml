@@ -28,7 +28,7 @@
     <item android:title="About">
         <menu>
             <item android:title="Giới thiệu" android:id="@+id/nav_gioithieu" android:icon="@drawable/baseline_account_balance_24"/>
-            <item android:title="Thoát" android:id="@+id/nav_thoat" android:icon="@drawable/baseline_exit_to_app_24"/>
+            <item android:title="Diễn đàn ATUS" android:id="@+id/nav_diendan" android:icon="@drawable/baseline_outgoing_mail_24"/>
         </menu>
     </item>
 

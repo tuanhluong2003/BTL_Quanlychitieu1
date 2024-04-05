@@ -302,5 +302,4 @@ public class Frangment_Thongke extends Fragment {
         lineChart.setData(lineData);
         lineChart.invalidate();
     }
-    
 }

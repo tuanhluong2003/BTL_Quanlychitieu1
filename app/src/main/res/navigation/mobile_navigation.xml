@@ -35,8 +35,8 @@
         tools:layout="@layout/fragment_frangment__thongke" />
 
     <fragment
-        android:id="@+id/nav_thoat"
-        android:name="com.google.BTL_Quanlychitieu.ui.home.HomeFragment"
-        android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home"/>
+        android:id="@+id/nav_diendan"
+        android:name="com.google.BTL_Quanlychitieu.ui.Diendan.DiendanFragment"
+        android:label="Diễn đàn ATUS"
+        tools:layout="@layout/fragment_diendan"/>
 </navigation>

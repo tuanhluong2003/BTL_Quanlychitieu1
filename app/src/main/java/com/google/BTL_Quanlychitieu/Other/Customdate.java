@@ -5,7 +5,9 @@ import android.os.Build;
 import androidx.annotation.RequiresApi;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 
 public class Customdate {
@@ -16,6 +18,18 @@ public class Customdate {
         }
         return null;
     }
+
+    public static String getLocaldatetimenow()
+    {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            return LocalDateTime.now().format(formatter).toString();
+        }
+        return null;
+    }
+
+
+
 
     public static LocalDate getLocaldate(int nam, int thang, int ngay)
     {
@@ -69,9 +83,6 @@ public class Customdate {
     {
         return tmp1.substring(8,10) + "-" + tmp1.substring(5,7) + "-" + tmp1.substring(0,4);
     }
-    
-    
-    // time
 
 
     public static LocalTime getLocaltimenow()
