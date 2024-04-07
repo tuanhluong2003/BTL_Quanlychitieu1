@@ -1,6 +1,10 @@
 package com.google.BTL_Quanlychitieu;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -9,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.BTL_Quanlychitieu.BroadcardReciver.InternetBroadcastReciver;
 import com.google.BTL_Quanlychitieu.Entity.user;
 import com.google.BTL_Quanlychitieu.Other.CustomPicture;
 import com.google.BTL_Quanlychitieu.Other.DataLocalManager;
@@ -75,6 +80,15 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+
+        BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                Toast.makeText(context, "vao activitimain r", Toast.LENGTH_SHORT).show();
+            }
+        };
+
     }
 
     private void signout() {
@@ -115,5 +129,10 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
     }
 }

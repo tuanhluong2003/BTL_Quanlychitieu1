@@ -1,7 +1,11 @@
 package com.google.BTL_Quanlychitieu.Other;
 
 import android.app.Application;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 
+import com.google.BTL_Quanlychitieu.BroadcardReciver.InternetBroadcastReciver;
 import com.google.BTL_Quanlychitieu.Entity.user;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
@@ -26,4 +30,5 @@ public class MyApplication extends Application {
                 User = gson.fromJson(tmpuser, objtype);
             }
     }
+
 }

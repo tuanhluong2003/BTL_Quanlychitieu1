@@ -27,7 +27,9 @@ public class DiendanViewmodel extends AndroidViewModel {
 
     public int  getsize()
     {
+    if (mylist!= null)
         return mylist.size()-1;
+    else return -1;
     }
     public void updateList(Message ms) {
         mylist.add(ms);

@@ -1,6 +1,10 @@
 package com.google.BTL_Quanlychitieu;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.Toast;
@@ -8,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.BTL_Quanlychitieu.BroadcardReciver.InternetBroadcastReciver;
 import com.google.BTL_Quanlychitieu.Entity.user;
 import com.google.BTL_Quanlychitieu.Other.DataLocalManager;
 import com.google.BTL_Quanlychitieu.Other.MyApplication;
@@ -39,6 +44,18 @@ public class SplashTheme  extends AppCompatActivity {
                }
            }
        },2000);
+    }
+
+    InternetBroadcastReciver br = new InternetBroadcastReciver();
+    @Override
+    protected void onStart() {
+        super.onStart();
+        IntentFilter intentFilter = new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE");
+        registerReceiver(br, intentFilter);
+        IntentFilter filter = new IntentFilter("anhtu.action_internet");
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            registerReceiver(br, filter, null, null, Context.RECEIVER_EXPORTED);
+        }
     }
 
     public void dangnhap(String username, String pass)

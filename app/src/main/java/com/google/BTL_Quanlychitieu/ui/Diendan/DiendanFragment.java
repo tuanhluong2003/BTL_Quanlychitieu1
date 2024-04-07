@@ -1,6 +1,8 @@
 package com.google.BTL_Quanlychitieu.ui.Diendan;
 
+import android.content.Intent;
 import android.graphics.Rect;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -148,8 +150,6 @@ public class DiendanFragment extends Fragment {
 
             }
         });
-
-
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -157,7 +157,16 @@ public class DiendanFragment extends Fragment {
             }
         }, 1500);
 
-
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (mViewModel.getsize() <= 0)
+                {
+                    Intent it = new Intent("anhtu.action_internet");
+                    getContext().sendBroadcast(it);
+                }
+            }
+        }, 3000);
     }
 
 
