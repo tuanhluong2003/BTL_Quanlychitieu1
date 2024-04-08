@@ -59,7 +59,7 @@ public class FragmentThu extends Fragment {
             @Override
             public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
                 if(position ==0){
-                    tab.setIcon(R.drawable.baseline_shopping_cart_checkout_24);
+                    tab.setIcon(R.drawable.baseline_add_shopping_cart_24);
                     tab.setText("Khoản thu");
 
                 }else {

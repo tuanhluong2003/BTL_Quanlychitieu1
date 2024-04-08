@@ -37,6 +37,7 @@ import com.google.BTL_Quanlychitieu.Entity.Thu;
 import com.google.BTL_Quanlychitieu.Listener.DialogListener;
 import com.google.BTL_Quanlychitieu.Listener.ItemClickListener;
 import com.google.BTL_Quanlychitieu.Other.CustomNumber;
+import com.google.BTL_Quanlychitieu.Other.CustomPendingIntent;
 import com.google.BTL_Quanlychitieu.Other.DataLocalManager;
 import com.google.BTL_Quanlychitieu.R;
 import com.google.BTL_Quanlychitieu.databinding.FragmentHomeBinding;
@@ -274,6 +275,7 @@ public class HomeFragment extends Fragment {
                                     public void dialogPositive() {
                                         int position = viewHolder.getLayoutPosition();
                                         ChiDuKien kt = adapterchidk.getItem(position);
+                                        CustomPendingIntent.removePendingIntent(getContext(),kt);
                                         Toast.makeText(getActivity(),"Khoản chi đã được xóa",Toast.LENGTH_SHORT).show();
                                         mViewModel.deletechidk(kt);
                                     }

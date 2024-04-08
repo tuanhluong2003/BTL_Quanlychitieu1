@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -63,7 +64,7 @@ public class Loaikhoanchi extends Fragment {
         mRv = view.findViewById(R.id.rv_Loaikhoanchi);
         fab = view.findViewById(R.id.fabloaikhoanchi);
         mAdapter = new Loaichi_R_Adapter(getActivity());
-        mRv.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mRv.setLayoutManager(new GridLayoutManager(getContext(), 2));
         mRv.setAdapter(mAdapter);
         final Loaikhoanchi currentFragment = this;
 

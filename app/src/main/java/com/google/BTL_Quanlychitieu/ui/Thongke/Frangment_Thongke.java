@@ -295,7 +295,7 @@ public class Frangment_Thongke extends Fragment {
         yAxis.setAxisLineColor(Color.BLACK);
         yAxis.setLabelCount(10);
 
-        LineDataSet dataset1 = new LineDataSet(entries1, "Khoản chi");
+        LineDataSet dataset1 = new LineDataSet(entries1, "Khoản thu/chi");
         dataset1.setColor(Color.RED);
         dataset1.setLineWidth(2f);
         LineData lineData = new LineData(dataset1);

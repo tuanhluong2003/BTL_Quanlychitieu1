@@ -78,7 +78,8 @@ public class khoanchiDialog {
         ed_ghichu = dialog.findViewById(R.id.ghichuchi);
         tv_ngay = dialog.findViewById(R.id.tv_ngay);
         tv_gio = dialog.findViewById(R.id.tv_gio);
-
+        tv_ngay.setText(Customdate.getLocaldatenow().toString());
+        tv_gio.setText(Customdate.getLocaltimenow().toString());
 
         fragmentkhoanchi.getViewmodel().getAllLoaiChi().observe(fragmentkhoanchi.getActivity(), new Observer<List<Loaichi>>() {
             @Override
@@ -106,8 +107,7 @@ public class khoanchiDialog {
             spinner.setSelection(adapter.findposbyid(chi.idloaichi));
             tv_ngay.setText(chi.date);
             tv_gio.setText(chi.time);
-        }
-
+        } else
         if (type.equals("edit"))
         {
             ed_idchi.setText(String.valueOf(chi.idchi));
@@ -118,6 +118,7 @@ public class khoanchiDialog {
             tv_ngay.setText(chi.date);
             tv_gio.setText(chi.time);
         }
+
         tv_ngay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

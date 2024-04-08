@@ -23,7 +23,7 @@ public abstract class AppDTB_ChiDuKien extends RoomDatabase {
         if(INSTANCE == null){
             synchronized (AppDTB_ChiDuKien.class){
                 INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                                AppDTB_ChiDuKien.class, "dlieuchidukien_db")
+                                AppDTB_ChiDuKien.class, "dlieuchidukienn_db")
                         .fallbackToDestructiveMigration()
                         .allowMainThreadQueries()
                         .build();

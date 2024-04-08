@@ -8,6 +8,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -66,7 +67,7 @@ public class Loaikhoanthu extends Fragment {
         mRv = view.findViewById(R.id.rv_Loaikhoanthu);
         fab = view.findViewById(R.id.fabloaikhoanthu);
         mAdapter = new Loaithu_R_Adapter(getActivity());
-        mRv.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mRv.setLayoutManager(new GridLayoutManager(getContext(), 2));
         mRv.setAdapter(mAdapter);
         final com.google.BTL_Quanlychitieu.ui.Thu.Loaikhoanthu.Loaikhoanthu currentFragment = this;
 

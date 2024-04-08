@@ -23,12 +23,14 @@ import com.google.BTL_Quanlychitieu.Adapter.Loaichi_spinner_adapter;
 import com.google.BTL_Quanlychitieu.Entity.Chi;
 import com.google.BTL_Quanlychitieu.Entity.ChiDuKien;
 import com.google.BTL_Quanlychitieu.Entity.Loaichi;
+import com.google.BTL_Quanlychitieu.Other.CustomPendingIntent;
 import com.google.BTL_Quanlychitieu.Other.Customdate;
 import com.google.BTL_Quanlychitieu.Other.MyApplication;
 import com.google.BTL_Quanlychitieu.R;
 import com.google.BTL_Quanlychitieu.ui.home.HomeFragment;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Calendar;
 import java.util.Date;
@@ -36,7 +38,8 @@ import java.util.List;
 
 public class khoanchidukienDialog {
     ChiDuKien chidukien;
-
+    LocalDate tmpLocaldate = Customdate.getLocaldatenow();
+    LocalTime tmpLocaltime = Customdate.getLocaltimenow();
     HomeFragment homeFragment;
 
     String type;
@@ -138,8 +141,8 @@ public class khoanchidukienDialog {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(homeFragment.getContext(), new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int yearr, int monthh, int dayOfMonth) {
-                        LocalDate tmp = Customdate.getLocaldate(yearr, monthh+1, dayOfMonth);
-                        tv_ngay.setText(tmp.toString());
+                        tmpLocaldate = Customdate.getLocaldate(yearr, monthh+1, dayOfMonth);
+                        tv_ngay.setText(tmpLocaldate.toString());
                     }
                 },year, month, day);
                 datePickerDialog.show();
@@ -155,8 +158,8 @@ public class khoanchidukienDialog {
                 TimePickerDialog timePickerDialog = new TimePickerDialog(homeFragment.getContext(), new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        LocalTime tmp = Customdate.getLocaltime(hourOfDay, minute, 0);
-                        tv_gio.setText(tmp.toString());
+                        tmpLocaltime = Customdate.getLocaltime(hourOfDay, minute, 0);
+                        tv_gio.setText(tmpLocaltime.toString());
                     }
                 }, gio, phut, true);
 
@@ -185,6 +188,7 @@ public class khoanchidukienDialog {
                     tmpchi.user = chidukien.user;
                     homeFragment.getViewmodel().insertchi(tmpchi);
                     homeFragment.getViewmodel().deletechidk(chidukien);
+                    CustomPendingIntent.removePendingIntent(homeFragment.getContext(), chidukien);
                     Toast.makeText(homeFragment.getContext(), "Đã hoàn thành", Toast.LENGTH_SHORT).show();
                 } else
                 if (type.equals("edit")) {
@@ -195,6 +199,11 @@ public class khoanchidukienDialog {
                     chidukien.time = tv_gio.getText().toString();
                     chidukien.idloaichi = adapter.getItem(spinner.getSelectedItemPosition()).idloaichi;
                     homeFragment.getViewmodel().updatechidk(chidukien);
+                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                        LocalDateTime tmpLocaldatetime = LocalDateTime.of(tmpLocaldate, tmpLocaltime);
+                        CustomPendingIntent.removePendingIntent(homeFragment.getContext(), chidukien);
+                        CustomPendingIntent.CreatePendingintent(homeFragment.getContext(), chidukien, tmpLocaldatetime);
+                    }
                     Toast.makeText(homeFragment.getContext(), "Update thành công", Toast.LENGTH_SHORT).show();
                 } else {
                     ChiDuKien tmp = new ChiDuKien();
@@ -205,7 +214,12 @@ public class khoanchidukienDialog {
                     tmp.time = tv_gio.getText().toString();
                     tmp.idloaichi = adapter.getItem(spinner.getSelectedItemPosition()).idloaichi;
                     tmp.user = MyApplication.User.username;
+                    tmp.idpending = (int) new Date().getTime();
                     homeFragment.getViewmodel().insertchidk(tmp);
+                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                        LocalDateTime tmpLocaldatetime = LocalDateTime.of(tmpLocaldate, tmpLocaltime);
+                        CustomPendingIntent.CreatePendingintent(homeFragment.getContext(), tmp, tmpLocaldatetime);
+                    }
                     Toast.makeText(homeFragment.getContext(), "Insert thành công", Toast.LENGTH_SHORT).show();
                 }
                 dialog.dismiss();

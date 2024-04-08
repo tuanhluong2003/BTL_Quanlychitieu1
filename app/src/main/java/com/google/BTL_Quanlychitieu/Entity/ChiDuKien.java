@@ -17,5 +17,7 @@ public class ChiDuKien {
     public String date;
 
     public String time;
+
     public String user;
+    public int idpending;
 }

@@ -28,6 +28,15 @@ public class Customdate {
         return null;
     }
 
+    public static LocalDateTime getLocaldatetimenoww()
+    {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            return LocalDateTime.now();
+        }
+        return null;
+    }
+
+
 
 
 

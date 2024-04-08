@@ -77,6 +77,8 @@ public class khoanthuDialog {
         ed_ghichu = dialog.findViewById(R.id.ghichuthu);
         tv_ngay = dialog.findViewById(R.id.tv_ngay);
         tv_gio = dialog.findViewById(R.id.tv_gio);
+        tv_ngay.setText(Customdate.getLocaldatenow().toString());
+        tv_gio.setText(Customdate.getLocaltimenow().toString());
 
 
         fragmentkhoanthu.getViewmodel().getAllLoaiThu().observe(fragmentkhoanthu.getActivity(), new Observer<List<Loaithu>>() {
