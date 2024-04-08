@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:background="@drawable/bg_white_corner_16"
@@ -34,7 +35,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:enabled="false"
-                android:hint="Mã khoản chi (auto)" />
+                android:hint="Mã khoản chi(auto)" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Spinner
@@ -50,7 +51,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             >
-
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/ed_tenkhoanchi"
                 android:layout_width="match_parent"
@@ -89,6 +89,34 @@
                 android:hint="Ghi chú" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            >
+
+            <TextView
+                android:id="@+id/tv_ngay"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="10dp"
+                android:gravity="center"
+                android:background="@drawable/bg_gray_corner16_gray"
+                android:layout_marginRight="5dp"
+                android:text="18-01-2003"></TextView>
+
+            <TextView
+                android:id="@+id/tv_gio"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="10dp"
+                android:gravity="center"
+                android:background="@drawable/bg_gray_corner16_gray"
+                android:text="18:01"></TextView>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

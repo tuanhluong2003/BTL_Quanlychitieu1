@@ -9,7 +9,6 @@ import com.google.BTL_Quanlychitieu.ui.Chi.Khoanchi.Khoanchi;
 import com.google.BTL_Quanlychitieu.ui.Chi.Loaikhoanchi.Loaikhoanchi;
 
 public class Chi_VP2_Adapter extends FragmentStateAdapter {
-
     public Chi_VP2_Adapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
     }

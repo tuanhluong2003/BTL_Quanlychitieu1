@@ -1,17 +1,12 @@
 package com.google.BTL_Quanlychitieu.Other;
 
 import android.app.Application;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.net.ConnectivityManager;
 
-import com.google.BTL_Quanlychitieu.BroadcardReciver.InternetBroadcastReciver;
 import com.google.BTL_Quanlychitieu.Entity.user;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 
 import java.lang.reflect.Type;
-import java.util.logging.Handler;
 
 public class MyApplication extends Application {
 

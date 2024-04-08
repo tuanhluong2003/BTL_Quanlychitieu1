@@ -1,5 +1,6 @@
 package com.google.BTL_Quanlychitieu.ui.Diendan;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.net.ConnectivityManager;
@@ -19,6 +20,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageSwitcher;
@@ -112,7 +114,6 @@ public class DiendanFragment extends Fragment {
                         }
                     }
                 });
-
             }
         });
 

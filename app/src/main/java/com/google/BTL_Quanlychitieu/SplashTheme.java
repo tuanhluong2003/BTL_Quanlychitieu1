@@ -1,6 +1,5 @@
 package com.google.BTL_Quanlychitieu;
 
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -12,17 +11,10 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.BTL_Quanlychitieu.BroadcardReciver.InternetBroadcastReciver;
-import com.google.BTL_Quanlychitieu.Entity.user;
-import com.google.BTL_Quanlychitieu.Other.DataLocalManager;
+import com.google.BTL_Quanlychitieu.BroadcastReciver.InternetBroadcastReciver;
 import com.google.BTL_Quanlychitieu.Other.MyApplication;
-import com.google.common.reflect.TypeToken;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.gson.Gson;
-
-import java.io.Serializable;
-import java.lang.reflect.Type;
 
 public class SplashTheme  extends AppCompatActivity {
 

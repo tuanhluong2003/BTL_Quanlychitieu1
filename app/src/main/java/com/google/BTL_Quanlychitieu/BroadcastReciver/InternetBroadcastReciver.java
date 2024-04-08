@@ -1,4 +1,4 @@
-package com.google.BTL_Quanlychitieu.BroadcardReciver;
+package com.google.BTL_Quanlychitieu.BroadcastReciver;
 
 import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
@@ -27,16 +27,16 @@ public class InternetBroadcastReciver extends BroadcastReceiver {
     @SuppressLint("ServiceCast")
     private boolean isNetWorkAvailable(@NonNull Context context) {
 
-        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        if (connectivityManager == null) return false;
+            ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+            if (connectivityManager == null) return false;
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
-        {
-            Network network = connectivityManager.getActiveNetwork();
-            if (network == null)
-                return false;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+            {
+                Network network = connectivityManager.getActiveNetwork();
+                if (network == null)
+                    return false;
 
-            NetworkCapabilities capabilities = connectivityManager.getNetworkCapabilities(network);
+                NetworkCapabilities capabilities = connectivityManager.getNetworkCapabilities(network);
             return capabilities!=null && (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)|| capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI));
         }
         else

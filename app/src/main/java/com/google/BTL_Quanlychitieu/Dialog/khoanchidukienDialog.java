@@ -165,8 +165,14 @@ public class khoanchidukienDialog {
         });
 
         btn_luu.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
+                if (ed_Sotien.getText().toString().equals(""))
+                {
+                    ed_Sotien.setError("Yêu cầu nhập số tiền");
+                    return;
+                }
                 if (type.equals("seen"))
                 {
                     Chi tmpchi = new Chi();
