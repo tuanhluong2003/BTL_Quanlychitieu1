@@ -14,6 +14,22 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="AppCompatAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <!-- Customize your dialog theme if needed -->
+        <item name="buttonBarPositiveButtonStyle">@style/DialogButton.PositiveButton</item> <!-- Customize positive button style -->
+        <item name="buttonBarNegativeButtonStyle">@style/DialogButton.NegativeButton</item> <!-- Customize negative button style -->
+    </style>
+
+    <style name="DialogButton.PositiveButton" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <!-- Customize positive button style -->
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="DialogButton.NegativeButton" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <!-- Customize negative button style -->
+        <item name="android:textColor">@color/black</item>
+    </style>
+
     <style name="ThemeSpl" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="android:windowBackground">@drawable/bgsplash</item>
@@ -26,8 +42,6 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-
-
         <!-- Customize your theme here. -->
     </style>
 

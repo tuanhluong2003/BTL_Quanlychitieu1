@@ -35,8 +35,8 @@ public class CustomPendingIntent {
         it.setAction("Myaction");
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, chiDuKien.idpending,it,
                 PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
-        alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
-        //Log.d("thongbao","Them thanh cong khoan du kien "+ chiDuKien.idpending);
+        //alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+        Log.d("thongbao","Them thanh cong khoan du kien "+ chiDuKien.idpending);
     }
 
     public static void removePendingIntent(Context context, ChiDuKien chiDuKien)
@@ -44,7 +44,7 @@ public class CustomPendingIntent {
         Intent it = new Intent(context, AlarmReceiver.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, chiDuKien.idpending,it,
                 PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
-       // Log.d("thongbao","Huy thanh cong khoan du kien "+ chiDuKien.idpending);
+        //Log.d("thongbao","Huy thanh cong khoan du kien "+ chiDuKien.idpending);
         pendingIntent.cancel();
     }
 }

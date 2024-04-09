@@ -3,6 +3,7 @@ package com.google.BTL_Quanlychitieu.Other;
 import android.app.Application;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.content.Context;
 import android.os.Build;
 
 import com.google.BTL_Quanlychitieu.Entity.user;
@@ -16,6 +17,7 @@ public class MyApplication extends Application {
 
     public static user User = null;
     public static final String CHANNEL_ID = "CHANNEL_1";
+
     @Override
     public void onCreate() {
         super.onCreate();

@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.BTL_Quanlychitieu.BroadcastReciver.AlarmReceiver;
 import com.google.BTL_Quanlychitieu.BroadcastReciver.InternetBroadcastReciver;
 import com.google.BTL_Quanlychitieu.Other.MyApplication;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -38,16 +39,9 @@ public class SplashTheme  extends AppCompatActivity {
        },2000);
     }
 
-    InternetBroadcastReciver br = new InternetBroadcastReciver();
     @Override
     protected void onStart() {
         super.onStart();
-        IntentFilter intentFilter = new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE");
-        registerReceiver(br, intentFilter);
-        IntentFilter filter = new IntentFilter("anhtu.action_internet");
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            registerReceiver(br, filter, null, null, Context.RECEIVER_EXPORTED);
-        }
     }
 
     public void dangnhap(String username, String pass)

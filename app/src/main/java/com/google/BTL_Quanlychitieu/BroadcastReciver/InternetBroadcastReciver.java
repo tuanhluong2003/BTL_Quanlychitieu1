@@ -9,19 +9,36 @@ import android.net.Network;
 import android.net.NetworkCapabilities;
 import android.net.NetworkInfo;
 import android.os.Build;
+import android.provider.Settings;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+
+import com.google.BTL_Quanlychitieu.Dialog.AlertDialogg;
+import com.google.BTL_Quanlychitieu.Listener.DialogListener;
+import com.google.BTL_Quanlychitieu.Other.MyApplication;
+import com.google.BTL_Quanlychitieu.R;
 
 public class InternetBroadcastReciver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         if (intent.getAction().equals("android.net.conn.CONNECTIVITY_CHANGE") || intent.getAction().equals("anhtu.action_internet"));
         {
-            if (isNetWorkAvailable(context))
-                Toast.makeText(context, "Internet Connected", Toast.LENGTH_SHORT).show();
-            else
-                Toast.makeText(context, "Internet Disconected", Toast.LENGTH_SHORT).show();
+            if (!isNetWorkAvailable(context))
+            {
+                AlertDialogg alertDialogg = new AlertDialogg(context,"Cảnh báo","Thiết bị không có kết nối Internet. Bạn có muốn chuyển tới mục cài đặt?", R.drawable.thantai);
+                alertDialogg.setDialogListener(new DialogListener() {
+                    @Override
+                    public void dialogPositive() {
+                        Intent settingsIntent = new Intent(Settings.ACTION_WIRELESS_SETTINGS);
+                        context.startActivity(settingsIntent);
+                    }
+                });
+                alertDialogg.show();
+            } else
+            {
+                    Toast.makeText(context, "Internet Connected", Toast.LENGTH_SHORT).show();
+            }
         }
     }
     @SuppressLint("ServiceCast")

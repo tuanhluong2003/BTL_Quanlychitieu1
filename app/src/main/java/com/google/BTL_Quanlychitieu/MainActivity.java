@@ -3,6 +3,8 @@ package com.google.BTL_Quanlychitieu;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.BTL_Quanlychitieu.BroadcastReciver.InternetBroadcastReciver;
 import com.google.BTL_Quanlychitieu.Entity.user;
 import com.google.BTL_Quanlychitieu.Other.CustomPicture;
 import com.google.BTL_Quanlychitieu.Other.DataLocalManager;
@@ -40,11 +43,20 @@ public class MainActivity extends AppCompatActivity {
 
     TextView email_header, name_header;
 
+    InternetBroadcastReciver br = new InternetBroadcastReciver();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        IntentFilter intentFilter = new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE");
+        registerReceiver(br, intentFilter);
+        IntentFilter filter = new IntentFilter("anhtu.action_internet");
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            registerReceiver(br, filter, null, null, Context.RECEIVER_EXPORTED);
+        }
 
         Intent it = getIntent();
         Bundle bundle = it.getExtras();

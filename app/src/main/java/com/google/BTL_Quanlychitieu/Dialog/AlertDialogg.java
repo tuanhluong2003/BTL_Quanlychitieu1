@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import androidx.appcompat.app.AlertDialog;
 
 import com.google.BTL_Quanlychitieu.Listener.DialogListener;
+import com.google.BTL_Quanlychitieu.R;
 
 public class AlertDialogg {
 
@@ -32,7 +33,7 @@ public class AlertDialogg {
 
     public void show()
     {
-        AlertDialog.Builder mydialog = new AlertDialog.Builder(context);
+        AlertDialog.Builder mydialog = new AlertDialog.Builder(context, R.style.AppCompatAlertDialogStyle);
         mydialog.setTitle(title);
         mydialog.setMessage(message);
         mydialog.setIcon(icon);
