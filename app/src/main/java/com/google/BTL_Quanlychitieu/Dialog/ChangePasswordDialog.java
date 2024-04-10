@@ -33,7 +33,6 @@ import java.util.Random;
 public class ChangePasswordDialog {
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-
     Context context;
     String email;
 
@@ -106,17 +105,19 @@ public class ChangePasswordDialog {
                                                 @Override
                                                 public void onSuccess(Void unused) {
                                                     Toast.makeText(context, "Thay đổi mật khẩu thành công", Toast.LENGTH_SHORT).show();
+                                                    dialog.dismiss();
                                                 }
                                             }).addOnFailureListener(new OnFailureListener() {
                                                 @Override
                                                 public void onFailure(@NonNull Exception e) {
                                                     Toast.makeText(context, "Thay đổi mật khẩu thất bại", Toast.LENGTH_SHORT).show();
+                                                    dialog.dismiss();
                                                 }
                                             });
                                         } else {
                                             Toast.makeText(context, "Ồ lỗi rồi", Toast.LENGTH_SHORT).show();
+                                            dialog.dismiss();
                                         }
-                                        dialog.dismiss();
                                     }
                                 });
                     }
