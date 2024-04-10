@@ -108,6 +108,13 @@ public class MainActivity extends AppCompatActivity {
         };
     }
 
+    private void signout() {
+        DataLocalManager.remove_user();
+        Intent it = new Intent(MainActivity.this, Signin.class);
+        MyApplication.User = null;
+        startActivity(it);
+        finish();
+    }
 
 
     private void Loadinfouser() {
