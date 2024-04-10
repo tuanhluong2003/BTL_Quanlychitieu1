@@ -148,12 +148,11 @@ public class forgotPasswordDialog {
                         ed_email_otp.setError("OTP không chính xác");
                     } else
                     {
-                        ChangePasswordDialog changePasswordDialog = new ChangePasswordDialog(context,email.toString());
+                        ChangePasswordDialog changePasswordDialog = new ChangePasswordDialog(context,email);
                         changePasswordDialog.show();
                         dialog.dismiss();
                     }
                 }
-
             }
         });
         dialog.show();
