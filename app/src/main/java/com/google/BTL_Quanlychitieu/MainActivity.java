@@ -36,7 +36,7 @@ import com.google.gson.Gson;
 import java.lang.reflect.Type;
 
 public class MainActivity extends AppCompatActivity {
-
+//
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
 
