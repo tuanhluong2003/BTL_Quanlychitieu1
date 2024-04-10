@@ -89,6 +89,23 @@ public class MainActivity extends AppCompatActivity {
 
         Loadinfouser();
 
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                if (item.getItemId() == R.id.action_Signout)
+                {
+                    signout();
+                }
+                return false;
+            }
+        });
+
+        BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                Toast.makeText(context, "vao activitimain r", Toast.LENGTH_SHORT).show();
+            }
+        };
     }
 
     private void signout() {
