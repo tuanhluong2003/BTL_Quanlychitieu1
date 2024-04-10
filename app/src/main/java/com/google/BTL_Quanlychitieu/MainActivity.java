@@ -36,7 +36,6 @@ import com.google.gson.Gson;
 import java.lang.reflect.Type;
 
 public class MainActivity extends AppCompatActivity {
-//
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
 
@@ -89,23 +88,7 @@ public class MainActivity extends AppCompatActivity {
         name_header = view.findViewById(R.id.name_header);
 
         Loadinfouser();
-        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                if (item.getItemId() == R.id.action_Signout)
-                {
-                    signout();
-                }
-                return false;
-            }
-        });
 
-        BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                Toast.makeText(context, "vao activitimain r", Toast.LENGTH_SHORT).show();
-            }
-        };
     }
 
     private void signout() {
