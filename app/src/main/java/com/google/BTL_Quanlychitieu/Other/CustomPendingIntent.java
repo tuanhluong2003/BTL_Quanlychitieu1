@@ -35,7 +35,7 @@ public class CustomPendingIntent {
         it.setAction("Myaction");
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, chiDuKien.idpending,it,
                 PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
-        //alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+        alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
         Log.d("thongbao","Them thanh cong khoan du kien "+ chiDuKien.idpending);
     }
 

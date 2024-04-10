@@ -56,8 +56,6 @@ public class MainActivity extends AppCompatActivity {
         mailSender.start();
 
 
-        // đăng ký registerReceiver cho hệ thống
-        // Broadcast "br" đăng ký nhận sự kiện "android.net.conn.CONNECTIVITY_CHANGE" mà hệ thống bắn ra
         IntentFilter intentFilter = new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE");
         registerReceiver(br, intentFilter);
         IntentFilter filter = new IntentFilter("anhtu.action_internet");
