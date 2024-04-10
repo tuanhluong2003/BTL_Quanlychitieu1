@@ -30,18 +30,13 @@ public class DataLocalManager {
     {
         instance.mysharedPreferences.pushStringvalue(USER, value);
     }
-
     public static void remove_user()
     {
         instance.mysharedPreferences.remove(USER);
     }
+
     public static String get_user()
     {
         return instance.mysharedPreferences.getStringvalue(USER);
     }
-
-
-
-
-
 }

@@ -32,6 +32,8 @@ public class RepositoryChi {
         mAllChibymonth = mChiDao.findAll((thang < 10 ? nam+ "-0"+thang+"-%" : nam+"-"+thang+"-%"), MyApplication.User.username);
     }
 
+
+    // câu lệnh sau where (thang < 10 ? nam+ "-0"+thang+"-%" : nam+"-"+thang+"-%")
     public LiveData<List<Chi>> getAllchi(){
         return mAllChi;
     }

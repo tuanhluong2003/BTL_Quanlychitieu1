@@ -75,6 +75,8 @@ public class Khoanchi extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
+
+                //observe cái này đển giám sát sự thay đổi của dữ liệu
                 mViewModel.getAllChi().observe(current.getActivity(), new Observer<List<Chi>>() {
                     @Override
                     public void onChanged(List<Chi> chis) {

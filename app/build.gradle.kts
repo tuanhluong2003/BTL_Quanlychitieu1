@@ -1,6 +1,9 @@
+import com.android.builder.model.PackagingOptions
+
 plugins {
     id("com.android.application")
     id ("com.google.gms.google-services")
+
 }
 
 android {
@@ -33,6 +36,8 @@ android {
     buildFeatures {
         viewBinding = true
     }
+
+
 }
 
 
@@ -60,5 +65,8 @@ dependencies {
     implementation("com.google.firebase:firebase-database") //realtime
 
     implementation ("com.google.code.gson:gson:2.10.1")
+    implementation("com.sun.mail:android-mail:1.6.2")
+    implementation("com.sun.mail:android-activation:1.6.2")
+
 
 }

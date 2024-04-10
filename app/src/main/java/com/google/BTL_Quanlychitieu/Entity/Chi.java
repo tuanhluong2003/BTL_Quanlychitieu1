@@ -3,7 +3,7 @@ package com.google.BTL_Quanlychitieu.Entity;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "tablechi")
+@Entity(tableName = "tablechi") // quy tắc của roomdatabase đặt ra
 public class Chi {
     @PrimaryKey(autoGenerate = true)
     public int idchi;

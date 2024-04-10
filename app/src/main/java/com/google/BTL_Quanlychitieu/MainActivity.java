@@ -17,6 +17,7 @@ import com.google.BTL_Quanlychitieu.BroadcastReciver.InternetBroadcastReciver;
 import com.google.BTL_Quanlychitieu.Entity.user;
 import com.google.BTL_Quanlychitieu.Other.CustomPicture;
 import com.google.BTL_Quanlychitieu.Other.DataLocalManager;
+import com.google.BTL_Quanlychitieu.Other.MAILSender;
 import com.google.BTL_Quanlychitieu.Other.MyApplication;
 import com.google.android.material.navigation.NavigationView;
 
@@ -48,9 +49,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        binding = ActivityMainBinding.inflate(getLayoutInflater());  // code tự sinh ra
         setContentView(binding.getRoot());
 
+        MAILSender mailSender = new MAILSender("luonganhtuan180103@gmail.com","OTP to change password", "Your OTP is 180103");
+        mailSender.start();
+
+
+        // đăng ký registerReceiver cho hệ thống
+        // Broadcast "br" đăng ký nhận sự kiện "android.net.conn.CONNECTIVITY_CHANGE" mà hệ thống bắn ra
         IntentFilter intentFilter = new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE");
         registerReceiver(br, intentFilter);
         IntentFilter filter = new IntentFilter("anhtu.action_internet");
@@ -60,7 +67,12 @@ public class MainActivity extends AppCompatActivity {
 
         Intent it = getIntent();
         Bundle bundle = it.getExtras();
+
+
         if (bundle != null) inituser(bundle);
+
+
+
         Toolbar toolbar = binding.appBarMain.toolbar;
         setSupportActionBar(toolbar);
         DrawerLayout drawer = binding.drawerLayout;
@@ -90,14 +102,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
         BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
                 Toast.makeText(context, "vao activitimain r", Toast.LENGTH_SHORT).show();
             }
         };
-
     }
 
     private void signout() {
@@ -123,16 +133,21 @@ public class MainActivity extends AppCompatActivity {
 
     private void inituser(Bundle bundle) {
         user tmp = (user) bundle.getSerializable("dulieu");
+        //Gson để chuyển dữ liệu từ Object sang string
         Gson gson = new Gson();
         DataLocalManager.update_user(gson.toJson(tmp));
     }
 
+
+    // code tự sinh
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
+
+    //code tự sinh
     @Override
     public boolean onSupportNavigateUp() {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
@@ -140,6 +155,7 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
+    //code tự sinh
     @Override
     protected void onStop() {
         super.onStop();

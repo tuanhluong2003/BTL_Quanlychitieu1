@@ -51,17 +51,22 @@ public class FrangmentChi extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        // hiển thị nội dung tương ứng với tablayout
         mVp = view.findViewById(R.id.pageviewchi);
+        // // ánh xa tới phần tablayout ở bên trên cùng // gồm chi và khoản chi
         mTl = view.findViewById(R.id.tablayoutchi);
+
+
         Chi_VP2_Adapter adapter = new Chi_VP2_Adapter(getActivity());
         mVp.setAdapter(adapter);
+
+        // kết nôi viewpager với tablayout
         new TabLayoutMediator(mTl, mVp, new TabLayoutMediator.TabConfigurationStrategy() {
             @Override
             public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
                 if(position ==0){
                     tab.setIcon(R.drawable.baseline_shopping_cart_checkout_24);
                     tab.setText("Khoản chi");
-
                 }else {
                     tab.setIcon(R.drawable.baseline_add_card_24);
                     tab.setText("Loại khoản Chi");
@@ -70,6 +75,8 @@ public class FrangmentChi extends Fragment {
         }).attach();
     }
 
+
+    //code tự sinh ra
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

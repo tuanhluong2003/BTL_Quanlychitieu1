@@ -70,6 +70,14 @@
             android:text="Bạn chưa có tài khoản?"
             android:textColor="@color/purple_700"
             android:textSize="20dp" />
+        <TextView
+            android:id="@+id/btn_forgotpw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Quên mật khẩu?"
+            android:textColor="@color/purple_700"
+            android:textSize="20dp" />
 
     </LinearLayout>
 

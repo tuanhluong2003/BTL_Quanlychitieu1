@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.BTL_Quanlychitieu.Dialog.forgotPasswordDialog;
 import com.google.BTL_Quanlychitieu.Entity.user;
 import com.google.BTL_Quanlychitieu.Other.MyApplication;
 import com.google.BTL_Quanlychitieu.databinding.ActivitySigninBinding;
@@ -23,14 +24,12 @@ public class Signin extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (MyApplication.User != null){
-            dangnhap(MyApplication.User.username, MyApplication.User.Pass);
-        }
         binding = ActivitySigninBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         Intent it = getIntent();
         Bundle bundle = it.getExtras();
+
         if (bundle != null)
         {
             binding.edUsername.setText(it.getExtras().getString("acc"));
@@ -42,6 +41,8 @@ public class Signin extends AppCompatActivity {
                 dangnhap(binding.edUsername.getText().toString(), binding.edPass.getText().toString());
             }
         });
+
+        //button chuyển từ signin -> signup
         binding.btnNotacc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,7 +51,20 @@ public class Signin extends AppCompatActivity {
                 finish();
             }
         });
+
+        binding.btnForgotpw.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                forgotPasswordDialog dialog = new forgotPasswordDialog(Signin.this,
+                        "",
+                        binding.edUsername.getText().toString(),
+                        forgotPasswordDialog.TYPE_EMAIL);
+                dialog.show();
+            }
+        });
     }
+
+
     public void dangnhap(String username, String pass)
     {
         db.collection("user")
@@ -63,6 +77,7 @@ public class Signin extends AppCompatActivity {
                         Intent it = new Intent(Signin.this, MainActivity.class);
                         QueryDocumentSnapshot tmp = (QueryDocumentSnapshot) task.getResult().getDocuments().get(0);
                         user tmpuser = new user(
+                                // lấy dữ liệu mà mình select đc cho vào thằng tmpuser.
                                 tmp.get("name").toString(),
                                 tmp.get("username").toString(),
                                 tmp.get("pass").toString(),

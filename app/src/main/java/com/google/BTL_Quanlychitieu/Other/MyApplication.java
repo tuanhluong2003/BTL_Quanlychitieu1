@@ -21,8 +21,10 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
         DataLocalManager.init(getApplicationContext());
         CustomPicture.init(getApplicationContext());
+
         String tmpuser = DataLocalManager.get_user();
         if (tmpuser != null)
             if (tmpuser != null){
@@ -30,6 +32,8 @@ public class MyApplication extends Application {
                 Type objtype = new TypeToken<user>(){}.getType();
                 User = gson.fromJson(tmpuser, objtype);
             }
+
+
         createNotificationChannel();
     }
 
@@ -44,7 +48,6 @@ public class MyApplication extends Application {
             if (notificationManager != null) {
                 notificationManager.createNotificationChannel(channel);
             }
-
         }
     }
 

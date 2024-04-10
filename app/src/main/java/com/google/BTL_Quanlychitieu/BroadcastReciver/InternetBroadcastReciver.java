@@ -30,6 +30,7 @@ public class InternetBroadcastReciver extends BroadcastReceiver {
                 alertDialogg.setDialogListener(new DialogListener() {
                     @Override
                     public void dialogPositive() {
+                        // chuyen toi muc cai dặt
                         Intent settingsIntent = new Intent(Settings.ACTION_WIRELESS_SETTINGS);
                         context.startActivity(settingsIntent);
                     }
