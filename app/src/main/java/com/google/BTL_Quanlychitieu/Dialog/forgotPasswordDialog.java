@@ -131,7 +131,7 @@ public class forgotPasswordDialog {
                                 if (task.isSuccessful() && task.getResult() != null && task.getResult().size() == 1)
                                 {
                                     String tmpOTP = generateOTP();
-                                    forgotPasswordDialog dialogOTP = new forgotPasswordDialog(context,tmpOTP, email, TYPE_OTP);
+                                    forgotPasswordDialog dialogOTP = new forgotPasswordDialog(context,tmpOTP, ed_email_otp.getText().toString(), TYPE_OTP);
                                     MAILSender mailSender = new MAILSender(ed_email_otp.getText().toString(),"OTP to change password", "Your OTP is " + tmpOTP);
                                     mailSender.start();
                                     Toast.makeText(context, "Vui lòng kiểm tra email.", Toast.LENGTH_SHORT).show();
@@ -148,7 +148,7 @@ public class forgotPasswordDialog {
                         ed_email_otp.setError("OTP không chính xác");
                     } else
                     {
-                        ChangePasswordDialog changePasswordDialog = new ChangePasswordDialog(context,email);
+                        ChangePasswordDialog changePasswordDialog = new ChangePasswordDialog(context,email.toString());
                         changePasswordDialog.show();
                         dialog.dismiss();
                     }

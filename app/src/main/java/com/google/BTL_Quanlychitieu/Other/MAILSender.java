@@ -29,7 +29,7 @@ public class MAILSender extends Thread{
         String host = "smtp.gmail.com";//local host mail
         int port = 587;
         final String username = "quanlychitieu1801@gmail.com";
-        final String password = "bwdy dyva oump vekm";
+        final String password = "mklb rrlh dffj vblh";
 
         // Cấu hình các thuộc tính
         Properties props = new Properties();
