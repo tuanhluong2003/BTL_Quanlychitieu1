@@ -23,19 +23,19 @@ public class SplashTheme  extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       new Handler().postDelayed(new Runnable() { // tạo ra 1 luồng chạy riêng
-           @Override
-           public void run() {
-               if (MyApplication.User != null)
-               {
-                       dangnhap(MyApplication.User.username, MyApplication.User.Pass);
-               } else {
-                   Intent it = new Intent(SplashTheme.this, Signin.class);
-                   startActivity(it);
-                   finish();
-               }
-           }
-       },2000);
+        new Handler().postDelayed(new Runnable() { // tạo ra 1 luồng chạy riêng
+            @Override
+            public void run() {
+                if (MyApplication.User != null)
+                {
+                    dangnhap(MyApplication.User.username, MyApplication.User.Pass);
+                } else {
+                    Intent it = new Intent(SplashTheme.this, Signin.class);
+                    startActivity(it);
+                    finish();
+                }
+            }
+        },2000);
     }
 
     @Override
@@ -53,7 +53,7 @@ public class SplashTheme  extends AppCompatActivity {
                     {
                         Toast.makeText(SplashTheme.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
                         Intent it = new Intent(SplashTheme.this, MainActivity.class);
-                       // QueryDocumentSnapshot tmp = (QueryDocumentSnapshot) task.getResult().getDocuments().get(0);
+                        // QueryDocumentSnapshot tmp = (QueryDocumentSnapshot) task.getResult().getDocuments().get(0);
                         startActivity(it);
                         finish();
                     }
