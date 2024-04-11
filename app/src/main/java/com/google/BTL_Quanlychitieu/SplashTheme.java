@@ -53,7 +53,6 @@ public class SplashTheme  extends AppCompatActivity {
                     {
                         Toast.makeText(SplashTheme.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
                         Intent it = new Intent(SplashTheme.this, MainActivity.class);
-                        // QueryDocumentSnapshot tmp = (QueryDocumentSnapshot) task.getResult().getDocuments().get(0);
                         startActivity(it);
                         finish();
                     }

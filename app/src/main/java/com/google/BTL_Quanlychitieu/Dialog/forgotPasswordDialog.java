@@ -51,13 +51,9 @@ public class forgotPasswordDialog {
     public static final int TYPE_OTP = 1;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-
-
     Context context;
     String value;
-
     String email;
-
     int type;
 
     public forgotPasswordDialog(Context context, String value,String email, int type)

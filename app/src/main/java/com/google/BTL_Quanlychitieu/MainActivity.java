@@ -51,10 +51,6 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());  // code tự sinh ra
         setContentView(binding.getRoot());
 
-        MAILSender mailSender = new MAILSender("luonganhtuan180103@gmail.com","OTP to change password", "Your OTP is 180103");
-        mailSender.start();
-
-
         IntentFilter intentFilter = new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE");
         registerReceiver(br, intentFilter);
         IntentFilter filter = new IntentFilter("anhtu.action_internet");
