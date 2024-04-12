@@ -87,47 +87,47 @@ public class ChangePasswordDialog_second {
                 if (isEmpty(ed_oldpass))
                     ed_oldpass.setError("Vui lòng nhập mật khẩu cũ");
                 else
-                    if (isEmpty(ed_newpass))
-                        ed_newpass.setError("Vui lòng nhập mật khẩu mới");
-                    else
-                        if (!ed_newpass.getText().toString().equals(ed_confirmpass.getText().toString()))
-                            ed_confirmpass.setError("Mật khẩu không khớp");
-                        else
-                        {
-                            Map<String, Object> passchange = new HashMap<>();
-                            passchange.put("pass",ed_newpass.getText().toString());
-                            db.collection("user")
-                                    .whereEqualTo("username",email)
-                                     .whereEqualTo("pass",ed_oldpass.getText().toString()).
-                                    get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                            if(task.isSuccessful() && !task.getResult().isEmpty()){
-                                                DocumentSnapshot documentSnapshot= task.getResult().getDocuments().get(0);
-                                                String id = documentSnapshot.getId();
-                                                db.collection("user").document(id).update(passchange).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                    @Override
-                                                    public void onSuccess(Void unused) {
-                                                        Toast.makeText(context, "Thay đổi mật khẩu thành công", Toast.LENGTH_SHORT).show();
-                                                        // doi du lieu luu trong sharepreference
-                                                        MyApplication.User.Pass = ed_newpass.getText().toString();
-                                                        Gson gson = new Gson();
-                                                        DataLocalManager.update_user(gson.toJson(MyApplication.User));
-                                                        dialog.dismiss();
-                                                    }
-                                                }).addOnFailureListener(new OnFailureListener() {
-                                                    @Override
-                                                    public void onFailure(@NonNull Exception e) {
-                                                        Toast.makeText(context, "Thay đổi mật khẩu thất bại", Toast.LENGTH_SHORT).show();
-                                                        dialog.dismiss();
-                                                    }
-                                                });
-                                            } else {
-                                                ed_oldpass.setError("Nhập đúng mật khẩu cũ");
+                if (isEmpty(ed_newpass))
+                    ed_newpass.setError("Vui lòng nhập mật khẩu mới");
+                else
+                if (!ed_newpass.getText().toString().equals(ed_confirmpass.getText().toString()))
+                    ed_confirmpass.setError("Mật khẩu không khớp");
+                else
+                {
+                    Map<String, Object> passchange = new HashMap<>();
+                    passchange.put("pass",ed_newpass.getText().toString());
+                    db.collection("user")
+                            .whereEqualTo("username",email)
+                            .whereEqualTo("pass",ed_oldpass.getText().toString()).
+                            get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                    if(task.isSuccessful() && !task.getResult().isEmpty()){
+                                        DocumentSnapshot documentSnapshot= task.getResult().getDocuments().get(0);
+                                        String id = documentSnapshot.getId();
+                                        db.collection("user").document(id).update(passchange).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void unused) {
+                                                Toast.makeText(context, "Thay đổi mật khẩu thành công", Toast.LENGTH_SHORT).show();
+                                                // doi du lieu luu trong sharepreference
+                                                MyApplication.User.Pass = ed_newpass.getText().toString();
+                                                Gson gson = new Gson();
+                                                DataLocalManager.update_user(gson.toJson(MyApplication.User));
+                                                dialog.dismiss();
                                             }
-                                        }
-                                    });
-                        }
+                                        }).addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                Toast.makeText(context, "Thay đổi mật khẩu thất bại", Toast.LENGTH_SHORT).show();
+                                                dialog.dismiss();
+                                            }
+                                        });
+                                    } else {
+                                        ed_oldpass.setError("Nhập đúng mật khẩu cũ");
+                                    }
+                                }
+                            });
+                }
             }
         });
         dialog.show();
