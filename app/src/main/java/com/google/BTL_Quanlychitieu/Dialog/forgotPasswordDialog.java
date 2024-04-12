@@ -127,4 +127,3 @@ public class forgotPasswordDialog {
         dialog.show();
     }
 }
-
