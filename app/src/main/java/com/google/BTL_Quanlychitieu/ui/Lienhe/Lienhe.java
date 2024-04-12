@@ -64,7 +64,7 @@ public class Lienhe extends Fragment {
         cardViewzalo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_CALL,Uri.parse("tel:0911466537"));
+                Intent intent = new Intent(Intent.ACTION_CALL,Uri.parse("tel:0376582508"));
                 startActivity(intent);
             }
         });

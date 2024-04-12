@@ -115,7 +115,7 @@ public class HomeFragment extends Fragment {
                 if (aFloat != null)
                     tongchi = aFloat.intValue();
                 else tongchi = 0;
-                tvtongchi.setText( "- " + CustomNumber.formatNumber(tongchi) + " Đồng");
+                tvtongchi.setText( "- " + CustomNumber.formatNumber(tongchi) + " VND");
                 Loadprogressbar();
             }
         });
@@ -138,7 +138,7 @@ public class HomeFragment extends Fragment {
                 if (aFloat != null)
                     tongthu = aFloat.intValue();
                 else tongthu = 0;
-                tvtongthu.setText( "+ " + CustomNumber.formatNumber(tongthu) + " Đồng");
+                tvtongthu.setText( "+ " + CustomNumber.formatNumber(tongthu) + " VND");
                 Loadprogressbar();
             }
         });
@@ -297,10 +297,10 @@ public class HomeFragment extends Fragment {
     {
         int tonngansach = DataLocalManager.get_mucchitieu();
         progressBar.setMax(tonngansach);
-        tvtongngansach.setText("Ngân sách: " + CustomNumber.formatNumber(tonngansach) +" Đồng");
+        tvtongngansach.setText("Ngân sách: " + CustomNumber.formatNumber(tonngansach) +" VND");
         progressBar.setProgress(max(0,tongchi-tongthu));
-        tv_ngansachdu.setText("Ngân sách còn dư: " + CustomNumber.formatNumber(tonngansach-tongchi+tongthu)+ " Đồng");
-        tv_dukien.setText(CustomNumber.formatNumber(tonngansach - tongchi - tongchidk + tongthu) + " Đồng");
+        tv_ngansachdu.setText("Ngân sách còn dư: " + CustomNumber.formatNumber(tonngansach-tongchi+tongthu)+ " VND");
+        tv_dukien.setText(CustomNumber.formatNumber(tonngansach - tongchi - tongchidk + tongthu) + " VND");
     }
     @Override
     public void onDestroyView() {

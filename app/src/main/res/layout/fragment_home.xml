@@ -56,7 +56,7 @@
                     android:fontFamily="@font/adamina"
                     android:padding="10sp"
                     android:paddingStart="20sp"
-                    android:text="18012003 Đồng"
+                    android:text="18012003 VND"
                     android:textAlignment="viewStart"
                     android:textColor="#3F51B5"
                     android:textSize="16sp"
@@ -86,7 +86,7 @@
                     android:fontFamily="@font/adamina"
                     android:padding="10sp"
                     android:paddingStart="20sp"
-                    android:text="-18012003 Đồng"
+                    android:text="-18012003 VND"
                     android:textAlignment="viewStart"
                     android:textColor="#CA1808"
                     android:textSize="16sp"
@@ -116,7 +116,7 @@
                     android:fontFamily="@font/adamina"
                     android:padding="10sp"
                     android:paddingStart="20sp"
-                    android:text="+10000 Đồng"
+                    android:text="+10000 VND"
                     android:textAlignment="viewStart"
                     android:textColor="#D622FF"
                     android:textSize="16sp"
@@ -134,7 +134,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
-                    android:text="Ngân sách: 10000000 đồng"></TextView>
+                    android:text="Ngân sách: 10000000 VND"></TextView>
 
                 <ProgressBar
                     android:id="@+id/progressbar"
@@ -150,7 +150,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
-                    android:text="Ngân sách: 10000000 đồng"
+                    android:text="Ngân sách: 10000000 VND"
                     android:textAlignment="textEnd"></TextView>
             </LinearLayout>
         </LinearLayout>

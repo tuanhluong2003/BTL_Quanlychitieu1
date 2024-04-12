@@ -140,7 +140,7 @@ public class Frangment_Thongke extends Fragment {
                 if (aFloat != null)
                     tongthu = aFloat.intValue();
                 else tongthu = 0;
-                tv_tongthu.setText(CustomNumber.formatNumber(tongthu) + " Đồng");
+                tv_tongthu.setText(CustomNumber.formatNumber(tongthu) + " VND");
             }
         });
         mViewModel.getTongchi(thang, nam).observe(this.getActivity(), new Observer<Float>() {
@@ -149,7 +149,7 @@ public class Frangment_Thongke extends Fragment {
                 if (aFloat!= null)
                     tongchi = aFloat.intValue();
                 else tongchi = 0;
-                tv_tongchi.setText(CustomNumber.formatNumber(tongchi) + " Đồng");
+                tv_tongchi.setText(CustomNumber.formatNumber(tongchi) + " VND");
             }
         });
 
