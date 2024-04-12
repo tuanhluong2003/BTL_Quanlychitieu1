@@ -41,6 +41,7 @@ public class AlertDialogg {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialogListener.dialogPositive();
+                dialog.dismiss();
             }
         });
 

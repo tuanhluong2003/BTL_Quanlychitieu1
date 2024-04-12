@@ -42,7 +42,8 @@ public class SignUp extends AppCompatActivity {
                 startActivity(it);
             }
         });
-        biding.btnSignup.setOnClickListener(new View.OnClickListener() {
+
+        biding.btnDangkyy.setOnClickListener(new View.OnClickListener() {
 
             boolean isEmpty(EditText str)
             {
@@ -73,7 +74,7 @@ public class SignUp extends AppCompatActivity {
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(SignUp.this, "Thêm dữ liệu thất bại", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignUp.this, "Đăng ký thất bại", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -115,11 +116,9 @@ public class SignUp extends AppCompatActivity {
                     Toast.makeText(SignUp.this, "Mật khẩu không khớp", Toast.LENGTH_SHORT).show();
                 } else checksignup();
 
-                biding.progressBar3.setVisibility(View.GONE);
             }
             @Override
             public void onClick(View v) {
-                biding.progressBar3.setVisibility(View.VISIBLE);
                 checkdata();
             }
         });
