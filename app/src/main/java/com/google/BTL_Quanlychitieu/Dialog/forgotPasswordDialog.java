@@ -1,48 +1,21 @@
 package com.google.BTL_Quanlychitieu.Dialog;
 
-import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.app.TimePickerDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.text.TextUtils;
-import android.util.Patterns;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.TimePicker;
 import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-import androidx.lifecycle.Observer;
-
-import com.google.BTL_Quanlychitieu.Adapter.Loaichi_spinner_adapter;
-import com.google.BTL_Quanlychitieu.Entity.Chi;
-import com.google.BTL_Quanlychitieu.Entity.Loaichi;
-import com.google.BTL_Quanlychitieu.Entity.user;
-import com.google.BTL_Quanlychitieu.MainActivity;
-import com.google.BTL_Quanlychitieu.Other.Customdate;
 import com.google.BTL_Quanlychitieu.Other.MAILSender;
-import com.google.BTL_Quanlychitieu.Other.MyApplication;
 import com.google.BTL_Quanlychitieu.R;
-import com.google.BTL_Quanlychitieu.Signin;
-import com.google.BTL_Quanlychitieu.ui.Chi.Khoanchi.Khoanchi;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 
-import java.io.Serializable;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.Calendar;
-import java.util.List;
 import java.util.Random;
 
 public class forgotPasswordDialog {

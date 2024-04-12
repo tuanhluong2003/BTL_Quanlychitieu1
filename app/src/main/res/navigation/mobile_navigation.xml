@@ -39,4 +39,15 @@
         android:name="com.google.BTL_Quanlychitieu.ui.Diendan.DiendanFragment"
         android:label="Diễn đàn ATUS"
         tools:layout="@layout/fragment_diendan"/>
+
+    <fragment
+        android:id="@+id/nav_lienhe"
+        android:name="com.google.BTL_Quanlychitieu.ui.Lienhe.Lienhe"
+        android:label="Liên hệ với chúng tôi"
+        tools:layout="@layout/fragment_lienhe"/>
+    <fragment
+        android:id="@+id/nav_thongtinntaikhoan"
+        android:name="com.google.BTL_Quanlychitieu.ui.Thongtintaikhoan.Thongtintaikhoan"
+        android:label="Thông tin tài khoản"
+        tools:layout="@layout/fragment_thongtintaikhoan"/>
 </navigation>

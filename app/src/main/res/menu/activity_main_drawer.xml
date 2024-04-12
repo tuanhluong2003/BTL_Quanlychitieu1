@@ -18,17 +18,17 @@
             android:title="Khoản Chi"
             android:icon="@drawable/baseline_shopping_cart_checkout_24"
             />
-
         <item
             android:id="@+id/nav_thongke"
             android:title="Thống kê"
-            android:icon="@drawable/baseline_bar_chart_24"
-            />
+            android:icon="@drawable/baseline_bar_chart_24" />
     </group>
     <item android:title="About">
         <menu>
             <item android:title="Giới thiệu" android:id="@+id/nav_gioithieu" android:icon="@drawable/baseline_account_balance_24"/>
             <item android:title="Diễn đàn ATUS" android:id="@+id/nav_diendan" android:icon="@drawable/baseline_outgoing_mail_24"/>
+            <item android:title="Liên hệ với chúng tôi" android:id="@+id/nav_lienhe" android:icon="@drawable/baseline_contact_support_24"/>
+            <item android:title="Thông tin tài khoản" android:id="@+id/nav_thongtinntaikhoan" android:icon="@drawable/baseline_manage_accounts_24"/>
         </menu>
     </item>
 
