@@ -74,7 +74,7 @@ public class forgotPasswordDialog {
 
         if (type == TYPE_EMAIL)
         {
-          ed_email_otp.setText(email);
+            ed_email_otp.setText(email);
         }
         btn_thoat.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -91,6 +91,7 @@ public class ChangePasswordDialog {
                 if (isEmpty(ed_newpass))
                     ed_newpass.setError("Vui lòng nhập mật khẩu mới");
                 else
+<<<<<<< HEAD
                     if (!ed_newpass.getText().toString().equals(ed_confirmpass.getText().toString()))
                         ed_confirmpass.setError("Mật khẩu không khớp");
                     else
@@ -128,9 +129,41 @@ public class ChangePasswordDialog {
                                             Toast.makeText(context, "Ồ lỗi rồi", Toast.LENGTH_SHORT).show();
                                             dialog.dismiss();
                                         }
+=======
+                if (!ed_newpass.getText().toString().equals(ed_confirmpass.getText().toString()))
+                    ed_confirmpass.setError("Mật khẩu không khớp");
+                else
+                {
+                    Map<String, Object> passchange = new HashMap<>();
+                    passchange.put("pass",ed_newpass.getText().toString());
+                    db.collection("user").whereEqualTo("username",email).
+                            get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                    if(task.isSuccessful() && !task.getResult().isEmpty()){
+                                        DocumentSnapshot documentSnapshot= task.getResult().getDocuments().get(0);
+                                        String id = documentSnapshot.getId();
+                                        db.collection("user").document(id).update(passchange).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void unused) {
+                                                Toast.makeText(context, "Thay đổi mật khẩu thành công", Toast.LENGTH_SHORT).show();
+                                                dialog.dismiss();
+                                            }
+                                        }).addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                Toast.makeText(context, "Thay đổi mật khẩu thất bại", Toast.LENGTH_SHORT).show();
+                                                dialog.dismiss();
+                                            }
+                                        });
+                                    } else {
+                                        Toast.makeText(context, "Ồ lỗi rồi", Toast.LENGTH_SHORT).show();
+                                        dialog.dismiss();
+>>>>>>> d2af0a7962df22e0f86c954799e388b8b3fb087e
                                     }
-                                });
-                    }
+                                }
+                            });
+                }
             }
         });
         dialog.show();
