@@ -109,14 +109,14 @@ public class Loaikhoanchi extends Fragment {
 
                     @Override
                     public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                        AlertDialogg dialogg = new AlertDialogg(currentFragment.getContext(),"Question","Bạn có chắc chắn muốn xóa loại khoản chi này?", R.drawable.ic_launcher_foreground);
+                        int position = viewHolder.getLayoutPosition();
+                        Loaichi lt = mAdapter.getItem(position);
+                        AlertDialogg dialogg = new AlertDialogg(currentFragment.getContext(),"Question","Bạn có chắc chắn muốn xóa loại khoản chi ("+lt.Tenloaichi+")?", R.drawable.ic_launcher_foreground);
                         dialogg.setDialogListener(new DialogListener() {
                             @Override
                             public void dialogPositive() {
-                                int position = viewHolder.getLayoutPosition();
-                                Loaichi lt = mAdapter.getItem(position);
                                 lt.isDelete = 1;
-                                Toast.makeText(getActivity(),"Loại chi đã được xóa",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(),"Loại chi ("+lt.Tenloaichi+") đã được xóa",Toast.LENGTH_SHORT).show();
                                 mViewModel.update(lt);
                             }
                         });

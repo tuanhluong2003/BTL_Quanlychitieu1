@@ -19,6 +19,7 @@
         android:padding="10dp"
         android:layout_margin="5dp"
         android:text="Loại khoản chi"
+        android:background="@drawable/bg_gray_corner16_gray"
         android:textSize="30dp"></TextView>
 
 </androidx.cardview.widget.CardView>

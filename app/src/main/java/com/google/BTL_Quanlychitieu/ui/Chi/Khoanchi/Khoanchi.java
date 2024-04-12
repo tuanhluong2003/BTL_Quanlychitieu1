@@ -137,7 +137,6 @@ public class Khoanchi extends Fragment {
 
             @Override
             public void onItemClick(ChiDuKien position) {
-
             }
         });
 
@@ -160,13 +159,13 @@ public class Khoanchi extends Fragment {
 
                     @Override
                     public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                        AlertDialogg dialogg = new AlertDialogg(current.getContext(),"Question","Bạn có chắc chắn muốn xóa khoản chi này?", R.drawable.ic_launcher_foreground)
+                        int position = viewHolder.getLayoutPosition();
+                        Chi kt = mAdapter.getItem(position);
+                        AlertDialogg dialogg = new AlertDialogg(current.getContext(),"Question","Bạn có chắc chắn muốn xóa khoản chi "+kt.idchi+"?", R.drawable.ic_launcher_foreground)
                         .setDialogListener(new DialogListener() {
                             @Override
                             public void dialogPositive() {
-                                int position = viewHolder.getLayoutPosition();
-                                Chi kt = mAdapter.getItem(position);
-                                Toast.makeText(getActivity(),"Khoản chi đã được xóa",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(),"Khoản chi "+kt.idchi+" đã được xóa",Toast.LENGTH_SHORT).show();
                                 mViewModel.delete(kt);
                             }
                         });

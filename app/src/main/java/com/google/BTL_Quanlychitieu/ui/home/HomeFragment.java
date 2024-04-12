@@ -274,14 +274,14 @@ public class HomeFragment extends Fragment {
 
                     @Override
                     public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                        AlertDialogg dialogg = new AlertDialogg(current.getContext(),"Question","Bạn có chắc chắn muốn xóa khoản chi Dự kiến này?", R.drawable.ic_launcher_foreground)
+                        int position = viewHolder.getLayoutPosition();
+                        ChiDuKien kt = adapterchidk.getItem(position);
+                        AlertDialogg dialogg = new AlertDialogg(current.getContext(),"Question","Bạn có chắc chắn muốn xóa khoản chi Dự kiến "+kt.iddukien+"?", R.drawable.ic_launcher_foreground)
                                 .setDialogListener(new DialogListener() {
                                     @Override
                                     public void dialogPositive() { // chỉ ra công việc thực hiện khi người dùng nhấn Yes
-                                        int position = viewHolder.getLayoutPosition();
-                                        ChiDuKien kt = adapterchidk.getItem(position);
                                         CustomPendingIntent.removePendingIntent(getContext(),kt); // gọi đến cái AlarmService
-                                        Toast.makeText(getActivity(),"Khoản chi đã được xóa",Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getActivity(),"Khoản chi DK "+kt.iddukien+" đã được xóa",Toast.LENGTH_SHORT).show();
                                         mViewModel.deletechidk(kt);
                                     }
                                 });

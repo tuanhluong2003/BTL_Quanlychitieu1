@@ -163,16 +163,17 @@ public class Khoanthu extends Fragment {
                     public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
                         return false;
                     }
-
                     @Override
                     public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                        AlertDialogg dialogg = new AlertDialogg(current.getContext(),"Question","Bạn có chắc chắn muốn xóa khoản thu này?", R.drawable.ic_launcher_foreground);
+                        int position = viewHolder.getLayoutPosition();
+                        Thu kt = mAdapter.getItem(position);
+                        AlertDialogg dialogg = new AlertDialogg(current.getContext(),"Question","Bạn có chắc chắn muốn xóa khoản thu "+kt.idthu+"?", R.drawable.ic_launcher_foreground);
                         dialogg.setDialogListener(new DialogListener() {
                             @Override
                             public void dialogPositive() {
-                                int position = viewHolder.getLayoutPosition();
-                                Thu kt = mAdapter.getItem(position);
-                                Toast.makeText(getActivity(),"Khoản thu đã được xóa",Toast.LENGTH_SHORT).show();
+
+
+                                Toast.makeText(getActivity(),"Khoản thu "+kt.idthu+" đã được xóa",Toast.LENGTH_SHORT).show();
                                 mViewModel.delete(kt);
                             }
                         });
